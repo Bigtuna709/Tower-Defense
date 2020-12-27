@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80a8649b02ae3249be9e77cb04c707b, type: 3}
+  m_Name: FirstTower
+  m_EditorClassIdentifier: 
+  _towerUpgrades: []
+  _towerName: FirstTower
+  _towerCost: 15
+  _towerDamage: 1
+  _towerRateOfFire: 0.5
+  _towerPrefab: {fileID: 8196823191359567429, guid: 2d27de786e8ce2340b90048d5f744d7a,
+    type: 3}
+  _bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
+    type: 3}
+  _towerImage: {fileID: 21300000, guid: 633cc41217970fc49b8cb89d141fccd5, type: 3}
+  _towerType: 0

@@ -17,9 +17,9 @@ MonoBehaviour:
   _towerCost: 30
   _towerDamage: 5
   _towerRateOfFire: 1
-  _towerPrefab: {fileID: 8196823191359567429, guid: fe54be53ba6d7f34097321d7d7a31f75,
+  _towerPrefab: {fileID: 903237639049259137, guid: 1e1b8f41a9a13814393c56aa14322c34,
     type: 3}
-  _bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
+  _bulletPrefab: {fileID: 8519911300366328304, guid: d50e59e091456c644bb752b0c771ed9c,
     type: 3}
   _towerImage: {fileID: 21300000, guid: 633cc41217970fc49b8cb89d141fccd5, type: 3}
   _towerType: 1

@@ -7094,6 +7094,7 @@ MonoBehaviour:
   buildModePanel: {fileID: 947700335}
   playerLivesText: {fileID: 947705823}
   playerGoldText: {fileID: 1336262697}
+  finishLine: {fileID: 1401341115}
   spawnLocation: {fileID: 347818914}
 --- !u!4 &792074185
 Transform:

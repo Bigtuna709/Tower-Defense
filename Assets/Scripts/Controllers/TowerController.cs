@@ -24,7 +24,7 @@ public class TowerController : MonoBehaviour
 
             foreach(GameObject enemy in enemies)
             {
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                float distanceToEnemy = Vector3.Distance(GameManager.Instance.finishLine.position, enemy.transform.position);
                 if(distanceToEnemy < shortestDistance)
                 {
                     shortestDistance = distanceToEnemy;
@@ -32,7 +32,7 @@ public class TowerController : MonoBehaviour
                 }
             }
 
-            if(nearestEnemy != null && shortestDistance <= GetComponent<SphereCollider>().radius)
+            if(nearestEnemy != null)
             {
                 target = nearestEnemy.transform;                
             }
@@ -61,7 +61,7 @@ public class TowerController : MonoBehaviour
         {
             if (ReadyToFire())
             {
-                var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, transform.rotation);
+                var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
                 Bullet bullet = instance.GetComponent<Bullet>();
 
                 if(bullet != null)

@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     public Text playerLivesText;
     public Text playerGoldText;
 
+    public Transform finishLine;
     [SerializeField] Transform spawnLocation;
 
     private void Start()

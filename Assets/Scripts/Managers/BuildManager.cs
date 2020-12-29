@@ -48,15 +48,13 @@ public class BuildManager : Singleton<BuildManager>
                 if (GameManager.Instance.playerTotalGold >= tower.TowerCost)
                 {
                     Debug.Log("You choose tower: " + tower.TowerName);
+
+                    LoadTowerStats(tower);
+
                     _turretToBuild = tower.TowerPrefab;
                     towerCost = tower.TowerCost;
                     tempTowerType = tower.TowerType;
 
-                    towerImage.sprite = tower.TowerSprite;
-                    towerNameText.text = "Tower Name: " + tower.TowerName;
-                    towerDamageText.text = "Tower Damage: " + tower.TowerDamage.ToString();
-                    towerTypeText.text = "Tower Type: " + tower.TowerType.ToString();
-                    towerCostText.text = "Tower Cost: " + tower.TowerCost.ToString();
                 }
                 else
                 {
@@ -65,6 +63,15 @@ public class BuildManager : Singleton<BuildManager>
                 }
             }
         }
+    }
+
+    void LoadTowerStats(TowerSO tower)
+    {
+        towerImage.sprite = tower.TowerSprite;
+        towerNameText.text = "Tower Name: " + tower.TowerName;
+        towerDamageText.text = "Tower Damage: " + tower.TowerDamage.ToString();
+        towerTypeText.text = "Tower Type: " + tower.TowerType.ToString();
+        towerCostText.text = "Tower Cost: " + tower.TowerCost.ToString() + "gp";
     }
 
     public void ExitBuildMode()

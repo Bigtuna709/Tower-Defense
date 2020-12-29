@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         playerTotalLives = 20;
         playerGoldText.text = playerTotalGold.ToString();
         playerLivesText.text = playerTotalLives.ToString();
-        waveNumText.text = "Wave Number: " + _waveNumber.ToString();
+        waveNumText.text = "Wave Number: " + _waveNumber;
     }
 
     public void StartWave()

@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
 
     public Text playerLivesText;
     public Text playerGoldText;
+    public Text waveNumText;
 
     public Transform finishLine;
     [SerializeField] Transform spawnLocation;
@@ -29,6 +30,7 @@ public class GameManager : Singleton<GameManager>
         playerTotalLives = 20;
         playerGoldText.text = playerTotalGold.ToString();
         playerLivesText.text = playerTotalLives.ToString();
+        waveNumText.text = "Wave Number: " + _waveNumber.ToString();
     }
 
     public void StartWave()
@@ -40,6 +42,8 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator Spawn()
     {
+        waveNumText.text = "Wave Number: " + _waveNumber.ToString();
+
         foreach (EnemySO enemy in _enemies)
         {
             if (enemy.WaveNumber == _waveNumber)
@@ -54,8 +58,9 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
-            _waveNumber++;
-            startWaveBTN.GetComponent<Button>().interactable = true;
+
+        _waveNumber++;
+        startWaveBTN.GetComponent<Button>().interactable = true;
     }
 
     public void GameOver()

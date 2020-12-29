@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
     public enum TowerType
@@ -20,7 +21,7 @@ public class TowerSO : ScriptableObject
     [SerializeField] float _towerRateOfFire;
     [SerializeField] GameObject _towerPrefab;
     [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] Sprite _towerImage;
+    [SerializeField] Sprite _towerSprite;
     [SerializeField] TowerType _towerType;
 
     public List<TowerSO> TowerUpgrades
@@ -76,7 +77,7 @@ public class TowerSO : ScriptableObject
     {
         get
         {
-            return _towerImage;
+            return _towerSprite;
         }
     }
     public TowerType TowerType

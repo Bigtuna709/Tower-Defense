@@ -34,7 +34,7 @@ public class TowerController : MonoBehaviour
 
             if(nearestEnemy != null)
             {
-                target = nearestEnemy.transform;                
+                target = nearestEnemy.transform;
             }
             else
             {

@@ -9,6 +9,10 @@ public class BuildManager : Singleton<BuildManager>
     public List<TowerSO> _towers = new List<TowerSO>();
 
     public Text towerNameText;
+    public Text towerCostText;
+    public Text towerTypeText;
+    public Text towerDamageText;
+    public Image towerImage;
 
     GameObject _turretToBuild;
 
@@ -47,6 +51,12 @@ public class BuildManager : Singleton<BuildManager>
                     _turretToBuild = tower.TowerPrefab;
                     towerCost = tower.TowerCost;
                     tempTowerType = tower.TowerType;
+
+                    towerImage.sprite = tower.TowerSprite;
+                    towerNameText.text = "Tower Name: " + tower.TowerName;
+                    towerDamageText.text = "Tower Damage: " + tower.TowerDamage.ToString();
+                    towerTypeText.text = "Tower Type: " + tower.TowerType.ToString();
+                    towerCostText.text = "Tower Cost: " + tower.TowerCost.ToString();
                 }
                 else
                 {

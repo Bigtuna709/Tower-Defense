@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class GameManager : Singleton<GameManager>
 {
     public List<EnemySO> _enemies = new List<EnemySO>();
-    public EnemyController enemyController;
 
     public int playerTotalGold;
     public int playerTotalLives;
@@ -25,7 +24,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        enemyController = GetComponent<EnemyController>();
         playerTotalGold = 60;
         playerTotalLives = 20;
         playerGoldText.text = playerTotalGold.ToString();

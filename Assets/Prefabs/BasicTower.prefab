@@ -90,7 +90,7 @@ BoxCollider:
   m_GameObject: {fileID: 62198047360361016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -183,7 +183,7 @@ BoxCollider:
   m_GameObject: {fileID: 968440542825729029}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -277,7 +277,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2395001578587022257}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -372,7 +372,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4141788069949971006}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -467,7 +467,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5060743811356736975}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -564,3 +564,6 @@ MonoBehaviour:
   fireLocation: {fileID: 6718713653577806569}
   turnSpeed: 10
   partToRotate: {fileID: 4686696629097605295}
+  towerType: 0
+  towerName: 
+  towerFireTime: 0

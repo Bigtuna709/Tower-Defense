@@ -14,7 +14,10 @@ public class BuildManager : Singleton<BuildManager>
     public Text towerDamageText;
     public Image towerImage;
 
+    public GameObject towerUI;
+
     GameObject _turretToBuild;
+    Node selectedNode;
 
     public bool buildMode;
 
@@ -23,7 +26,7 @@ public class BuildManager : Singleton<BuildManager>
 
     public GameObject GetTurretToBuild()
     {
-        return _turretToBuild;
+            return _turretToBuild;   
     }
     private void Update()
     {
@@ -39,22 +42,14 @@ public class BuildManager : Singleton<BuildManager>
     {
         if (!buildMode)
         {
-            GameManager.Instance.buildModePanel.SetActive(true);
-            buildMode = true;
-            Debug.Log("Build mode activated");
+            EnterBuildMode();
             var tower = _towers.FirstOrDefault(x => x.TowerType == button.towerType);
-            if(tower != null)
+            if (tower != null)
             {
                 if (GameManager.Instance.playerTotalGold >= tower.TowerCost)
                 {
-                    Debug.Log("You choose tower: " + tower.TowerName);
-
                     LoadTowerStats(tower);
-
-                    _turretToBuild = tower.TowerPrefab;
-                    towerCost = tower.TowerCost;
-                    tempTowerType = tower.TowerType;
-
+                    LoadTowerToBuild(tower);
                 }
                 else
                 {
@@ -65,6 +60,7 @@ public class BuildManager : Singleton<BuildManager>
         }
     }
 
+
     void LoadTowerStats(TowerSO tower)
     {
         towerImage.sprite = tower.TowerSprite;
@@ -73,11 +69,30 @@ public class BuildManager : Singleton<BuildManager>
         towerTypeText.text = "Tower Type: " + tower.TowerType.ToString();
         towerCostText.text = "Tower Cost: " + tower.TowerCost.ToString() + "gp";
     }
-
+    void LoadTowerToBuild(TowerSO tower)
+    {
+        _turretToBuild = tower.TowerPrefab;
+        towerCost = tower.TowerCost;
+        tempTowerType = tower.TowerType;
+    }
+    void EnterBuildMode()
+    {
+        GameManager.Instance.buildModePanel.SetActive(true);
+        buildMode = true;
+        Debug.Log("Build mode activated");
+    }
     public void ExitBuildMode()
     {
         buildMode = false;
         GameManager.Instance.buildModePanel.SetActive(false);
         Debug.Log("Build mode deactivated");
+    }
+
+    public void SelectNode(Node node)
+    {
+        selectedNode = node;
+        _turretToBuild = null;
+        towerUI.transform.position = node.transform.position;
+        towerUI.SetActive(true);
     }
 }

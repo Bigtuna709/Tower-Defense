@@ -19,19 +19,22 @@ public class Node : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (CantBuild())
-        {
-            Debug.Log("<color=red>Can't build there! - TODO: Display on screen</color>");
-            return;
-        }
-
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
 
-        if(!BuildManager.Instance.buildMode)
+        if (CantBuild() && !BuildManager.Instance.buildMode)
+        {
+            BuildManager.Instance.SelectNode(this);
             return;
+        }
+
+        if (!BuildManager.Instance.buildMode)
+        {
+            BuildManager.Instance.towerUI.SetActive(false);
+            return;
+        }
 
         GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
         turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);

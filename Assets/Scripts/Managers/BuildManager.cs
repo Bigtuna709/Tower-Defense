@@ -79,6 +79,7 @@ public class BuildManager : Singleton<BuildManager>
     {
         GameManager.Instance.buildModePanel.SetActive(true);
         buildMode = true;
+        towerUI.SetActive(false);
         Debug.Log("Build mode activated");
     }
     public void ExitBuildMode()

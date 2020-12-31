@@ -23,10 +23,13 @@ public class Node : MonoBehaviour
         {
             return;
         }
-
         if (CantBuild() && !BuildManager.Instance.buildMode)
         {
             BuildManager.Instance.SelectNode(this);
+            return;
+        }
+        if(CantBuild())
+        {
             return;
         }
 

@@ -74,5 +74,12 @@ public class TowerController : MonoBehaviour
             }
         }
     }
-
+    void OnMouseDown()
+    {
+        if (!BuildManager.Instance.buildMode)
+        {
+            BuildManager.Instance.SelectTower(this);
+            return;
+        }
+    }
 }

@@ -2681,7 +2681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cost: 120
+  m_Text: '{Upgrade Cost}
 
 '
 --- !u!222 &231419936
@@ -4991,7 +4991,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Sell: 10'
+  m_Text: '{Sell Amount}
+
+'
 --- !u!222 &419041541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14305,7 +14307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Basic Tower
+  m_Text: '{Tower Name}
 
 '
 --- !u!222 &1611472996
@@ -15640,7 +15642,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Damage: 15
+  m_Text: '{Tower Damage}
 
 '
 --- !u!222 &1795351712

@@ -8,6 +8,7 @@ public class BuildManager : Singleton<BuildManager>
 {
     public List<TowerSO> _towers = new List<TowerSO>();
 
+    [Header("Build Menu")]
     public Text towerNameText;
     public Text towerCostText;
     public Text towerTypeText;
@@ -16,8 +17,11 @@ public class BuildManager : Singleton<BuildManager>
 
     public GameObject towerUI;
 
+    [Header("TowerUI")]
+    public int towerSellAmount;
+
     GameObject _turretToBuild;
-    Node selectedNode;
+    TowerController selectedTower;
 
     public bool buildMode;
 
@@ -89,11 +93,23 @@ public class BuildManager : Singleton<BuildManager>
         Debug.Log("Build mode deactivated");
     }
 
-    public void SelectNode(Node node)
+    public void SelectTower(TowerController tower)
     {
-        selectedNode = node;
+        Debug.Log("Turret selected");
+        selectedTower = tower;
         _turretToBuild = null;
-        towerUI.transform.position = node.transform.position;
+        towerUI.transform.position = tower.transform.position;
         towerUI.SetActive(true);
+    }
+
+    public void SellTower(TowerSO tower)
+    {
+        towerSellAmount = tower.TowerSellAmount;
+        GameManager.Instance.playerTotalGold += towerSellAmount;
+        GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+    }
+    public void UpgradeTower()
+    {
+
     }
 }

@@ -90,7 +90,7 @@ BoxCollider:
   m_GameObject: {fileID: 62198047360361016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -183,7 +183,7 @@ BoxCollider:
   m_GameObject: {fileID: 968440542825729029}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -277,7 +277,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2395001578587022257}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -371,8 +371,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4141788069949971006}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -467,7 +467,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5060743811356736975}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -513,6 +513,8 @@ GameObject:
   - component: {fileID: 1600423764819942139}
   - component: {fileID: 5179952581958857184}
   - component: {fileID: 5179952581958857183}
+  - component: {fileID: 8518990288411054691}
+  - component: {fileID: 5890198334891463436}
   m_Layer: 0
   m_Name: BasicTower
   m_TagString: Untagged
@@ -567,3 +569,30 @@ MonoBehaviour:
   towerType: 0
   towerName: 
   towerFireTime: 0
+--- !u!136 &8518990288411054691
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196823191359567429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.788126
+  m_Height: 3.1932888
+  m_Direction: 1
+  m_Center: {x: -0.00998199, y: 2.3040257, z: 0}
+--- !u!65 &5890198334891463436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196823191359567429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.499312, y: 0.5360215, z: 1.5166919}
+  m_Center: {x: -0.004671216, y: 0.26801074, z: 0.013359904}

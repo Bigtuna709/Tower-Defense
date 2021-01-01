@@ -17,6 +17,8 @@ public class TowerSO : ScriptableObject
     [SerializeField] List<TowerSO> _towerUpgrades;
     [SerializeField] string _towerName;
     [SerializeField] int _towerCost;
+    [SerializeField] int _towerUpgradeCost;
+    [SerializeField] int _towerSellAmount;
     [SerializeField] int _towerDamage;
     [SerializeField] float _towerRateOfFire;
     [SerializeField] GameObject _towerPrefab;
@@ -43,6 +45,20 @@ public class TowerSO : ScriptableObject
         get
         {
             return _towerCost;
+        }
+    }
+    public int TowerUpgradeCost
+    {
+        get
+        {
+            return _towerUpgradeCost;
+        }
+    }
+    public int TowerSellAmount
+    {
+        get
+        {
+            return _towerSellAmount;
         }
     }
     public int TowerDamage

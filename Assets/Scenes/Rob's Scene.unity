@@ -7984,6 +7984,7 @@ MonoBehaviour:
   towerDamageText: {fileID: 177568893}
   towerImage: {fileID: 1445112293}
   towerUI: {fileID: 457512373}
+  towerSellAmount: 0
   buildMode: 0
   towerCost: 0
   tempTowerType: 0

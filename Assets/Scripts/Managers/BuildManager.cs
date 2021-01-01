@@ -95,7 +95,6 @@ public class BuildManager : Singleton<BuildManager>
 
     public void SelectTower(TowerController tower)
     {
-        Debug.Log("Turret selected");
         selectedTower = tower;
         _turretToBuild = null;
         towerUI.transform.position = tower.transform.position;

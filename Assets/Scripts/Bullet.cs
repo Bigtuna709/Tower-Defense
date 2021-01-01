@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distancePerFrame = speed * Time.deltaTime;
         transform.Translate(dir.normalized * distancePerFrame, Space.World);
+        transform.LookAt(target);
     }
     void OnCollisionEnter(Collision collision)
     {

@@ -18,13 +18,20 @@ public class BuildManager : Singleton<BuildManager>
     public GameObject towerUI;
 
     [Header("TowerUI")]
-    public int towerSellAmount;
+    public Text towerSellText;
+    public Text towerUpgradeNameText;
+    public Text towerUpgradeDamageText;
+    public Text towerUpgradeFireRateText;
+    public Text towerUpgradeFireRangeText;
+    public Text towerUpgradeCostText;
+    public GameObject upgradeBTN;
 
     GameObject _turretToBuild;
     TowerController selectedTower;
 
     public bool buildMode;
 
+    public int towerLevel;
     public int towerCost;
     public TowerType tempTowerType;
 
@@ -78,6 +85,8 @@ public class BuildManager : Singleton<BuildManager>
         _turretToBuild = tower.TowerPrefab;
         towerCost = tower.TowerCost;
         tempTowerType = tower.TowerType;
+        towerLevel = tower.TowerLevel;
+        
     }
     void EnterBuildMode()
     {
@@ -95,17 +104,37 @@ public class BuildManager : Singleton<BuildManager>
 
     public void SelectTower(TowerController tower)
     {
+        var instance = _towers.FirstOrDefault(x => x.TowerType == tower.towerType);
+
         selectedTower = tower;
         _turretToBuild = null;
         towerUI.transform.position = tower.transform.position;
+        SelectedTowerUI(instance, towerLevel);
         towerUI.SetActive(true);
     }
-
-    public void SellTower(TowerSO tower)
+    public void SelectedTowerUI(TowerSO tower, int towerLevel)
     {
-        towerSellAmount = tower.TowerSellAmount;
-        GameManager.Instance.playerTotalGold += towerSellAmount;
-        GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+        upgradeBTN.GetComponent<Button>().interactable = true;
+        if (tower.TowerUpgrade != null)
+        {
+            towerUpgradeNameText.text = tower.TowerUpgrade.TowerName;
+            towerUpgradeDamageText.text = tower.TowerUpgrade.TowerDamage.ToString();
+            //towerUpgradeFireRangeText.text = tower.TowerUpgrade.TowerRateOfFire.ToString();
+            towerUpgradeCostText.text = tower.TowerUpgradeCost.ToString();
+            towerSellText.text = tower.TowerSellAmount.ToString();
+        }
+        else
+        {
+            towerUpgradeNameText.text = "";
+            towerUpgradeDamageText.text = "";
+            towerUpgradeCostText.text = "";
+            towerSellText.text = tower.TowerSellAmount.ToString();
+            upgradeBTN.GetComponent<Button>().interactable = false;
+        }
+    }
+    public void SellTower()
+    {
+
     }
     public void UpgradeTower()
     {

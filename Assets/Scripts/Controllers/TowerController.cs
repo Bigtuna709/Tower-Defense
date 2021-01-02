@@ -13,6 +13,8 @@ public class TowerController : MonoBehaviour
     public TowerType towerType;
     public string towerName;
 
+    public int towerLevel;
+
     [SerializeField] float towerFireTime;
     void OnTriggerStay(Collider other)
     {

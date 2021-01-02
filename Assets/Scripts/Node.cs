@@ -38,6 +38,7 @@ public class Node : MonoBehaviour
         turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
 
         turretToBuild.GetComponent<TowerController>().towerType = BuildManager.Instance.tempTowerType;
+        turretToBuild.GetComponent<TowerController>().towerLevel = BuildManager.Instance.towerLevel;
 
         GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
         GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();

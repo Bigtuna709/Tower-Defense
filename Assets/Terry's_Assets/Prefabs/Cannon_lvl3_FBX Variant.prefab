@@ -65,6 +65,7 @@ MonoBehaviour:
   partToRotate: {fileID: 4520390503876426020}
   towerType: 1
   towerName: Cannon level 3
+  towerLevel: 3
   towerFireTime: 0
 --- !u!136 &8171300884160131004
 CapsuleCollider:

@@ -5,6 +5,8 @@ using System.Collections.Generic;
     public enum TowerType
     {
         Basic,
+        Basic2,
+        Basic3,
         Power,
         Flame,
         Magic
@@ -14,23 +16,24 @@ using System.Collections.Generic;
 
 public class TowerSO : ScriptableObject
 {
-    [SerializeField] List<TowerSO> _towerUpgrades;
+    [SerializeField] TowerSO _towerUpgrade;
     [SerializeField] string _towerName;
     [SerializeField] int _towerCost;
     [SerializeField] int _towerUpgradeCost;
     [SerializeField] int _towerSellAmount;
     [SerializeField] int _towerDamage;
+    [SerializeField] int _towerLevel;
     [SerializeField] float _towerRateOfFire;
     [SerializeField] GameObject _towerPrefab;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Sprite _towerSprite;
     [SerializeField] TowerType _towerType;
 
-    public List<TowerSO> TowerUpgrades
+    public TowerSO TowerUpgrade
     {
         get
         {
-            return _towerUpgrades;
+            return _towerUpgrade;
         }
     }
     public string TowerName
@@ -66,6 +69,13 @@ public class TowerSO : ScriptableObject
         get
         {
             return _towerDamage;
+        }
+    }
+    public int TowerLevel
+    {
+        get
+        {
+            return _towerLevel;
         }
     }
     public float TowerRateOfFire

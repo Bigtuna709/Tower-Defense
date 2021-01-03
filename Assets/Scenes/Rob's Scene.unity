@@ -4295,6 +4295,7 @@ GameObject:
   - component: {fileID: 371926821}
   - component: {fileID: 371926820}
   - component: {fileID: 371926819}
+  - component: {fileID: 371926823}
   m_Layer: 0
   m_Name: Upgrade_BTN
   m_TagString: Untagged
@@ -4384,7 +4385,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 371926821}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792074183}
+        m_MethodName: UpgradeTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 371926823}
+          m_ObjectArgumentAssemblyTypeName: ButtonENums, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &371926821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4422,6 +4434,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371926817}
   m_CullTransparentMesh: 0
+--- !u!114 &371926823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371926817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1fe8e3000f37c41898af0144d46fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerType: 0
 --- !u!1 &371984923
 GameObject:
   m_ObjectHideFlags: 0
@@ -7976,6 +8001,7 @@ MonoBehaviour:
   _towers:
   - {fileID: 11400000, guid: df2340ea9fe111946aa32b26bd8bb2ca, type: 2}
   - {fileID: 11400000, guid: 3f2c9db2147ae574ab19158096e1a514, type: 2}
+  - {fileID: 11400000, guid: b966acea87112044ba7f245d00db7e5f, type: 2}
   towerNameText: {fileID: 407745723}
   towerCostText: {fileID: 1797033727}
   towerTypeText: {fileID: 999553509}
@@ -7989,8 +8015,8 @@ MonoBehaviour:
   towerUpgradeFireRangeText: {fileID: 0}
   towerUpgradeCostText: {fileID: 231419935}
   upgradeBTN: {fileID: 371926817}
+  tempSellCost: 0
   buildMode: 0
-  towerLevel: 0
   towerCost: 0
   tempTowerType: 0
 --- !u!114 &792074184
@@ -8030,8 +8056,8 @@ MonoBehaviour:
   playerLivesText: {fileID: 947705823}
   playerGoldText: {fileID: 1336262697}
   waveNumText: {fileID: 131375475}
-  finishLine: {fileID: 1401341115}
   spawnLocation: {fileID: 347818914}
+  finishLine: {fileID: 1401341115}
 --- !u!4 &792074185
 Transform:
   m_ObjectHideFlags: 0
@@ -11038,7 +11064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1fe8e3000f37c41898af0144d46fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerType: 1
+  towerType: 3
 --- !u!1001 &1181717313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17123,7 +17149,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1953031595}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792074183}
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1953031595
 MonoBehaviour:
   m_ObjectHideFlags: 0

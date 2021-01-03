@@ -15,12 +15,11 @@ MonoBehaviour:
   _towerUpgrade: {fileID: 0}
   _towerName: FirstTowerUpgrade_1
   _towerCost: 15
-  _towerUpgradeCost: 60
   _towerSellAmount: 30
   _towerDamage: 5
   _towerLevel: 0
   _towerRateOfFire: 0.5
-  _towerPrefab: {fileID: 8196823191359567429, guid: 2d27de786e8ce2340b90048d5f744d7a,
+  _towerPrefab: {fileID: 8196823191359567429, guid: fe54be53ba6d7f34097321d7d7a31f75,
     type: 3}
   _bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
     type: 3}

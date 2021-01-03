@@ -11,7 +11,6 @@ public class Node : MonoBehaviour
 
     public Renderer rend;
     GameObject turret;
-
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -23,7 +22,7 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        if(CantBuild())
+        if (CantBuild())
         {
             return;
         }
@@ -34,16 +33,21 @@ public class Node : MonoBehaviour
             return;
         }
 
+        BuildTowerOnNode();
+    }
+
+    void BuildTowerOnNode()
+    {
         GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
         turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
 
         turretToBuild.GetComponent<TowerController>().towerType = BuildManager.Instance.tempTowerType;
-        turretToBuild.GetComponent<TowerController>().towerLevel = BuildManager.Instance.towerLevel;
+        turretToBuild.GetComponent<TowerController>().towerSellCost = BuildManager.Instance.tempSellCost;
 
         GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
         GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
 
-        if(GameManager.Instance.playerTotalGold < BuildManager.Instance.towerCost)
+        if (GameManager.Instance.playerTotalGold < BuildManager.Instance.towerCost)
         {
             BuildManager.Instance.ExitBuildMode();
             Debug.Log("<color=red>Not enough gold! - TODO: Display on screen</color>");

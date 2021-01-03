@@ -5,8 +5,10 @@ public class Bullet : MonoBehaviour
 
     Transform target;
 
-    public float speed;
+    [HideInInspector]
     public int bulletDamage;
+
+    public float speed;
     public void LookForTarget(Transform _target)
     {
         target = _target;

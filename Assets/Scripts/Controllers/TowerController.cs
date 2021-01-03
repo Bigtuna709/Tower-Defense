@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Linq;
-using System;
+using UnityEngine.EventSystems;
 
 public class TowerController : MonoBehaviour
 {
@@ -13,7 +12,8 @@ public class TowerController : MonoBehaviour
     public TowerType towerType;
     public string towerName;
 
-    public int towerLevel;
+    [HideInInspector]
+    public int towerSellCost;
 
     [SerializeField] float towerFireTime;
     void OnTriggerStay(Collider other)
@@ -78,6 +78,11 @@ public class TowerController : MonoBehaviour
     }
     void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         if (!BuildManager.Instance.buildMode)
         {
             BuildManager.Instance.SelectTower(this);

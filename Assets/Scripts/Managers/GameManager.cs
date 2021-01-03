@@ -11,16 +11,17 @@ public class GameManager : Singleton<GameManager>
     public int playerTotalLives;
     public int _waveNumber;
 
+
+    [Header("UI Elements")]
     public GameObject startWaveBTN;
     public GameObject playerHUD;
     public GameObject buildModePanel;
-
     public Text playerLivesText;
     public Text playerGoldText;
     public Text waveNumText;
 
-    public Transform finishLine;
     [SerializeField] Transform spawnLocation;
+    public Transform finishLine;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     public void StartWave()
     {
         Debug.Log("<color=green>Wave Incoming! - TODO: Display on screen</color>");
+
         startWaveBTN.GetComponent<Button>().interactable = false;
         StartCoroutine(Spawn());
     }

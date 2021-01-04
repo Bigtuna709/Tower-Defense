@@ -9,8 +9,11 @@ public class GameManager : Singleton<GameManager>
 
     public int playerTotalGold;
     public int playerTotalLives;
-    public int _waveNumber;
+    public int enemiesSpawned;
 
+    public bool isSpawning;
+    
+    [SerializeField] int _waveNumber;
 
     [Header("UI Elements")]
     public GameObject startWaveBTN;
@@ -25,13 +28,10 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        playerTotalGold = 60;
-        playerTotalLives = 20;
         playerGoldText.text = playerTotalGold.ToString();
         playerLivesText.text = playerTotalLives.ToString();
         waveNumText.text = "Wave Number: " + _waveNumber;
     }
-
     public void StartWave()
     {
         Debug.Log("<color=green>Wave Incoming! - TODO: Display on screen</color>");
@@ -39,10 +39,9 @@ public class GameManager : Singleton<GameManager>
         startWaveBTN.GetComponent<Button>().interactable = false;
         StartCoroutine(Spawn());
     }
-
     IEnumerator Spawn()
     {
-        waveNumText.text = "Wave Number: " + _waveNumber.ToString();
+        isSpawning = true;
 
         foreach (EnemySO enemy in _enemies)
         {
@@ -55,12 +54,22 @@ public class GameManager : Singleton<GameManager>
                     instance.GetComponent<NavMeshAgent>().speed = enemy.EnemySpeed;
                     instance.GetComponent<EnemyController>().totalEnemyHealth = enemy.EnemyHealth;
                     instance.GetComponent<EnemyController>().enemyReward = enemy.GoldReward;
+                    enemiesSpawned++;
                 }
             }
         }
+            isSpawning = false;
+    }
 
-        _waveNumber++;
-        startWaveBTN.GetComponent<Button>().interactable = true;
+    public void CheckForWaveOver()
+    {
+        bool WaveOver = !isSpawning && enemiesSpawned == 0;
+        if (WaveOver)
+        {
+            _waveNumber++;
+            startWaveBTN.GetComponent<Button>().interactable = true;
+            waveNumText.text = "Next Wave: " + _waveNumber.ToString();
+        }
     }
 
     public void GameOver()

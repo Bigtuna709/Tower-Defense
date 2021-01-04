@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
             GameManager.Instance.playerTotalGold += enemyReward;
             GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+            GameManager.Instance.enemiesSpawned--;
+            GameManager.Instance.CheckForWaveOver();
         }
     }
 }

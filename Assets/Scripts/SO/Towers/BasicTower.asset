@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d80a8649b02ae3249be9e77cb04c707b, type: 3}
-  m_Name: FirstTowerUpgrade_1
+  m_Name: BasicTower
   m_EditorClassIdentifier: 
-  _towerUpgrade: {fileID: 0}
-  _towerName: FirstTowerUpgrade_1
+  _towerUpgrade: {fileID: 11400000, guid: b966acea87112044ba7f245d00db7e5f, type: 2}
+  _towerName: Basic Tower
   _towerCost: 15
-  _towerSellAmount: 30
-  _towerDamage: 5
-  _towerLevel: 0
+  _towerSellAmount: 7
+  _towerDamage: 2
   _towerRateOfFire: 0.5
-  _towerPrefab: {fileID: 8196823191359567429, guid: fe54be53ba6d7f34097321d7d7a31f75,
+  _towerPrefab: {fileID: 8196823191359567429, guid: 2d27de786e8ce2340b90048d5f744d7a,
     type: 3}
   _bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
     type: 3}
   _towerSprite: {fileID: 21300000, guid: 633cc41217970fc49b8cb89d141fccd5, type: 3}
-  _towerType: 1
+  _towerType: 0

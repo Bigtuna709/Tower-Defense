@@ -16,6 +16,7 @@ public class TowerController : MonoBehaviour
     public int towerSellCost;
 
     [SerializeField] float towerFireTime;
+
     void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Enemy"))

@@ -178,3 +178,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalEnemyHealth: 0
+  enemyReward: 0

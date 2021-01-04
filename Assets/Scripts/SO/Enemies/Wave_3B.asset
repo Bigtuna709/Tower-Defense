@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753027873bc72b34fb327c3989121c99, type: 3}
-  m_Name: Enemy_11
+  m_Name: Wave_3B
   m_EditorClassIdentifier: 
   _enemyName: Capsule
   _enemyHealth: 10
@@ -18,6 +18,6 @@ MonoBehaviour:
   _goldReward: 1
   _enemyPrefab: {fileID: 3033932112030531685, guid: 2ae6e334c1cc52c41b7e896a60cae239,
     type: 3}
-  _waveNum: 10
+  _waveNum: 3
   _spawnCount: 15
   _spawnDelay: 1

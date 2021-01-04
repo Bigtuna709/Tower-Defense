@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753027873bc72b34fb327c3989121c99, type: 3}
-  m_Name: Enemy_9
+  m_Name: Wave_1
   m_EditorClassIdentifier: 
-  _enemyName: Capsule
-  _enemyHealth: 10
-  _enemySpeed: 3.5
+  _enemyName: Ant_1
+  _enemyHealth: 5
+  _enemySpeed: 3
   _goldReward: 1
-  _enemyPrefab: {fileID: 3033932112030531685, guid: 2ae6e334c1cc52c41b7e896a60cae239,
+  _enemyPrefab: {fileID: 1595283389852895086, guid: 08f1c15b9e03564438638dadb1910f9e,
     type: 3}
-  _waveNum: 8
+  _waveNum: 1
   _spawnCount: 15
-  _spawnDelay: 1
+  _spawnDelay: 0.75

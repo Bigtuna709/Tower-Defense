@@ -34,8 +34,7 @@ public class BuildManager : Singleton<BuildManager>
 
     public int towerCost;
     public TowerType tempTowerType;
-
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -112,10 +111,10 @@ public class BuildManager : Singleton<BuildManager>
         if (tower.TowerUpgrade != null)
         {
             towerUpgradeNameText.text = tower.TowerUpgrade.TowerName;
-            towerUpgradeDamageText.text = tower.TowerUpgrade.TowerDamage.ToString();
+            towerUpgradeDamageText.text = "Tower Damage: " + tower.TowerUpgrade.TowerDamage.ToString();
             //towerUpgradeFireRangeText.text = tower.TowerUpgrade.TowerRateOfFire.ToString();
-            towerUpgradeCostText.text = tower.TowerUpgrade.TowerCost.ToString();
-            towerSellText.text = tower.TowerSellAmount.ToString();
+            towerUpgradeCostText.text = "Cost to upgrade: " + tower.TowerUpgrade.TowerCost.ToString();
+            towerSellText.text = "Sell tower for: " + tower.TowerSellAmount.ToString();
             upgradeBTN.GetComponent<ButtonENums>().towerType = tower.TowerUpgrade.TowerType;
         }
         else
@@ -123,7 +122,7 @@ public class BuildManager : Singleton<BuildManager>
             towerUpgradeNameText.text = "";
             towerUpgradeDamageText.text = "";
             towerUpgradeCostText.text = "";
-            towerSellText.text = tower.TowerSellAmount.ToString();
+            towerSellText.text = "Sell tower for: " + tower.TowerSellAmount.ToString();
             upgradeBTN.GetComponent<Button>().interactable = false;
         }
     }
@@ -135,8 +134,6 @@ public class BuildManager : Singleton<BuildManager>
             GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
             towerUI.SetActive(false);
             Destroy(selectedTower.gameObject);
-            Debug.Log("<color=green>Tower Sold!</color>");
-
         }
     }
     public void UpgradeTower(ButtonENums button)

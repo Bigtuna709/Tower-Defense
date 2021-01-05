@@ -24,13 +24,15 @@ public class GameManager : Singleton<GameManager>
     public Text waveNumText;
 
     [SerializeField] Transform spawnLocation;
+    [SerializeField] int winWaveNum;
+    
     public Transform finishLine;
 
     private void Start()
     {
         playerGoldText.text = playerTotalGold.ToString();
         playerLivesText.text = playerTotalLives.ToString();
-        waveNumText.text = "Wave Number: " + _waveNumber;
+        waveNumText.text = "Current Wave: " + _waveNumber.ToString();
     }
     public void StartWave()
     {
@@ -68,14 +70,30 @@ public class GameManager : Singleton<GameManager>
         {
             _waveNumber++;
             startWaveBTN.GetComponent<Button>().interactable = true;
-            waveNumText.text = "Next Wave: " + _waveNumber.ToString();
+            waveNumText.text = "Current wave: " + _waveNumber.ToString();
         }
     }
-
-    public void GameOver()
+    public void CheckForGameOver()
     {
-        Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
-
+        if (playerTotalLives == 0)
+        {
+            Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
+        }
+        if(enemiesSpawned == 0 && _waveNumber == winWaveNum)
+        {
+            Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
+        }
+    }
+    public void EnemyDiedOrRemoved()
+    {
+        enemiesSpawned--;
+        CheckForWaveOver();
+        CheckForGameOver();
+    }
+    public void ShowGoldChange(int amount)
+    {
+        playerTotalGold += amount;
+        Instance.playerGoldText.text = playerTotalGold.ToString();
     }
 
 }

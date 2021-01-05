@@ -25,11 +25,7 @@ public class EnemyController : MonoBehaviour
             GameManager.Instance.playerTotalLives--;
             GameManager.Instance.playerLivesText.text = GameManager.Instance.playerTotalLives.ToString();
             Debug.Log("<color=cyan>Enemy reached the end!</color>");
-
-            if (GameManager.Instance.playerTotalLives == 0)
-            {
-                GameManager.Instance.GameOver();
-            }
+            GameManager.Instance.EnemyDiedOrRemoved();
         }   
     }
 
@@ -39,10 +35,8 @@ public class EnemyController : MonoBehaviour
         if(totalEnemyHealth <= 0)
         {
             Destroy(this.gameObject);
-            GameManager.Instance.playerTotalGold += enemyReward;
-            GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
-            GameManager.Instance.enemiesSpawned--;
-            GameManager.Instance.CheckForWaveOver();
+            GameManager.Instance.ShowGoldChange(enemyReward);
+            GameManager.Instance.EnemyDiedOrRemoved();
         }
     }
 }

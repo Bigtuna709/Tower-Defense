@@ -20,7 +20,6 @@ public class BuildManager : Singleton<BuildManager>
     public Text towerUpgradeNameText;
     public Text towerUpgradeDamageText;
     public Text towerUpgradeFireRateText;
-    public Text towerUpgradeFireRangeText;
     public Text towerUpgradeCostText;
     public GameObject upgradeBTN;
 
@@ -112,7 +111,6 @@ public class BuildManager : Singleton<BuildManager>
         {
             towerUpgradeNameText.text = tower.TowerUpgrade.TowerName;
             towerUpgradeDamageText.text = "Tower Damage: " + tower.TowerUpgrade.TowerDamage.ToString();
-            //towerUpgradeFireRangeText.text = tower.TowerUpgrade.TowerRateOfFire.ToString();
             towerUpgradeCostText.text = "Cost to upgrade: " + tower.TowerUpgrade.TowerCost.ToString();
             towerSellText.text = "Sell tower for: " + tower.TowerSellAmount.ToString();
             upgradeBTN.GetComponent<ButtonENums>().towerType = tower.TowerUpgrade.TowerType;
@@ -130,8 +128,7 @@ public class BuildManager : Singleton<BuildManager>
     {
         if (selectedTower != null)
         {
-            GameManager.Instance.playerTotalGold += selectedTower.towerSellCost;
-            GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+            GameManager.Instance.ShowGoldChange(selectedTower.towerSellCost);
             towerUI.SetActive(false);
             Destroy(selectedTower.gameObject);
         }
@@ -147,13 +144,13 @@ public class BuildManager : Singleton<BuildManager>
             {
                 LoadTowerToBuild(newTower);
                 GameObject turret = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
-                Destroy(selectedTower.gameObject);
                 turret.GetComponent<TowerController>().towerType = tempTowerType;
                 turret.GetComponent<TowerController>().towerSellCost = tempSellCost;
+
+                Destroy(selectedTower.gameObject);
                 towerUI.SetActive(false);
                 GameManager.Instance.playerTotalGold -= newTower.TowerCost;
                 GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
-                Debug.Log("Tower upgraded to: " + newTower.TowerType.ToString());
             }
             else
             {

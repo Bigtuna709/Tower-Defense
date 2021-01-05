@@ -8012,7 +8012,6 @@ MonoBehaviour:
   towerUpgradeNameText: {fileID: 1611472995}
   towerUpgradeDamageText: {fileID: 1795351711}
   towerUpgradeFireRateText: {fileID: 0}
-  towerUpgradeFireRangeText: {fileID: 0}
   towerUpgradeCostText: {fileID: 231419935}
   upgradeBTN: {fileID: 371926817}
   tempSellCost: 0
@@ -8049,6 +8048,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72689e29268d22f428309ab101dbac21, type: 2}
   playerTotalGold: 100
   playerTotalLives: 20
+  enemiesSpawned: 0
   isSpawning: 0
   _waveNumber: 1
   startWaveBTN: {fileID: 1822533897}
@@ -8058,6 +8058,7 @@ MonoBehaviour:
   playerGoldText: {fileID: 1336262697}
   waveNumText: {fileID: 131375475}
   spawnLocation: {fileID: 347818914}
+  winWaveNum: 3
   finishLine: {fileID: 1401341115}
 --- !u!4 &792074185
 Transform:

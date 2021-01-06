@@ -4,12 +4,18 @@ using System.Collections.Generic;
 
     public enum TowerType
     {
-        Basic,
+        Basic1,
         Basic2,
         Basic3,
-        Power,
-        Flame,
-        Magic
+        Power1,
+        Power2,
+        Power3,
+        Spray1,
+        Spray2,
+        Spray3,
+        Magic1,
+        Magic2,
+        Magic3
     }
 
 [CreateAssetMenu(fileName = "Tower", menuName = "TowerSO", order = 2)]

@@ -157,6 +157,10 @@ public class BuildManager : Singleton<BuildManager>
                 Debug.Log("<color=red>Not enough gold! - TODO: Display on screen</color>");
             }
         }
+        else
+        {
+            Debug.Log("<color=red>No such tower! Add the new tower to the list!</color>");
+        }
 
     }
 }

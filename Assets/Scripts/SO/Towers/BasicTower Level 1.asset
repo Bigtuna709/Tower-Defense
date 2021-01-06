@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicTower Level 1
   m_EditorClassIdentifier: 
   _towerUpgrade: {fileID: 11400000, guid: b966acea87112044ba7f245d00db7e5f, type: 2}
-  _towerName: Basic Tower
+  _towerName: Basic Tower Level 1
   _towerCost: 15
   _towerSellAmount: 7
   _towerDamage: 2

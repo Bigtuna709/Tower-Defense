@@ -8000,8 +8000,9 @@ MonoBehaviour:
   persistOnSceneLoad: 1
   _towers:
   - {fileID: 11400000, guid: df2340ea9fe111946aa32b26bd8bb2ca, type: 2}
-  - {fileID: 11400000, guid: 3f2c9db2147ae574ab19158096e1a514, type: 2}
   - {fileID: 11400000, guid: b966acea87112044ba7f245d00db7e5f, type: 2}
+  - {fileID: 11400000, guid: d8d24bf90825b264ca15b9e5493f7c5a, type: 2}
+  - {fileID: 11400000, guid: 3f2c9db2147ae574ab19158096e1a514, type: 2}
   towerNameText: {fileID: 407745723}
   towerCostText: {fileID: 1797033727}
   towerTypeText: {fileID: 999553509}
@@ -8046,7 +8047,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2724bb8f0ebdf754c9b62499dd7b5f8b, type: 2}
   - {fileID: 11400000, guid: 6bd0e3182b088df489c851e3b8b5e1f0, type: 2}
   - {fileID: 11400000, guid: 72689e29268d22f428309ab101dbac21, type: 2}
-  playerTotalGold: 100
+  playerTotalGold: 500
   playerTotalLives: 20
   enemiesSpawned: 0
   isSpawning: 0

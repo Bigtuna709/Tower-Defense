@@ -24,7 +24,6 @@ public class GameManager : Singleton<GameManager>
     public Text waveNumText;
 
     [SerializeField] Transform spawnLocation;
-    [SerializeField] int winWaveNum;
     
     public Transform finishLine;
 
@@ -44,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     IEnumerator Spawn()
     {
         isSpawning = true;
+        enemiesSpawned = 0;
 
         foreach (EnemySO enemy in _enemies)
         {
@@ -65,7 +65,7 @@ public class GameManager : Singleton<GameManager>
 
     public void CheckForWaveOver()
     {
-        bool WaveOver = !isSpawning && enemiesSpawned == 0;
+        bool WaveOver = !isSpawning && enemiesSpawned <= 0;
         if (WaveOver)
         {
             _waveNumber++;
@@ -79,7 +79,7 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
         }
-        if(enemiesSpawned == 0 && _waveNumber == winWaveNum)
+        if(enemiesSpawned == 0 && _waveNumber >= _enemies.Count)
         {
             Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
         }

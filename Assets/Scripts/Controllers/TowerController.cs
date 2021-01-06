@@ -64,16 +64,23 @@ public class TowerController : MonoBehaviour
         {
             if (ReadyToFire())
             {
-                var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
-                Bullet bullet = instance.GetComponent<Bullet>();
-
-                if(bullet != null)
+                if (tower.BulletPrefab != null)
                 {
-                    bullet.LookForTarget(target);
-                    bullet.bulletDamage = tower.TowerDamage;
-                }
+                    var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
+                    Bullet bullet = instance.GetComponent<Bullet>();
 
-                towerFireTime = Time.time + tower.TowerRateOfFire;
+                    if (bullet != null)
+                    {
+                        bullet.LookForTarget(target);
+                        bullet.bulletDamage = tower.TowerDamage;
+                    }
+
+                    towerFireTime = Time.time + tower.TowerRateOfFire;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }

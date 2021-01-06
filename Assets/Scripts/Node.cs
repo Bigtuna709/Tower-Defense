@@ -10,6 +10,7 @@ public class Node : MonoBehaviour
     public Color hoverCantColor;
 
     public Renderer rend;
+    GameObject ghostTurret;
     GameObject turret;
     void Start()
     {
@@ -32,7 +33,7 @@ public class Node : MonoBehaviour
             BuildManager.Instance.towerUI.SetActive(false);
             return;
         }
-
+        Destroy(ghostTurret);
         BuildTowerOnNode();
     }
 
@@ -65,20 +66,48 @@ public class Node : MonoBehaviour
         {
             rend.material.color = hoverCantColor;
         }
-        if(BuildManager.Instance.buildMode && !CantBuild())
+        if (BuildManager.Instance.buildMode && !CantBuild())
         {
             rend.material.color = hoverCanColor;
         }
         if (!BuildManager.Instance.buildMode)
         {
+            RemoveGhostTower();
+        }
+    }
+    void OnMouseEnter()
+    {
+        if (BuildManager.Instance.buildMode)
+        {
             rend.material.color = startColor;
+            if (turret == null)
+            {
+                GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
+                ghostTurret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
+                ghostTurret.GetComponent<CapsuleCollider>().isTrigger = true;
+                ghostTurret.GetComponent<BoxCollider>().isTrigger = true;
+                Renderer r = gameObject.GetComponent<Renderer>();
+                Color materialColor = r.material.color;
+                r.material.color = new Color(materialColor.r, materialColor.g, materialColor.b, 0.5f);
+            }
         }
     }
     void OnMouseExit()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            RemoveGhostTower();
+            return;
+        }
         if (BuildManager.Instance.buildMode || !BuildManager.Instance.buildMode)
         {
-            rend.material.color = startColor;
+            RemoveGhostTower();
         }
+    }
+
+    private void RemoveGhostTower()
+    {
+        rend.material.color = startColor;
+        Destroy(ghostTurret);
     }
 }

@@ -8227,7 +8227,7 @@ MonoBehaviour:
   playerGoldText: {fileID: 1336262697}
   waveNumText: {fileID: 131375475}
   spawnLocation: {fileID: 347818914}
-  winWaveNum: 3
+  _winWaveNum: 15
   finishLine: {fileID: 1401341115}
 --- !u!4 &792074185
 Transform:

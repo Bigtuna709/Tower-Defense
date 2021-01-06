@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
     public Text waveNumText;
 
     [SerializeField] Transform spawnLocation;
+    [SerializeField] int _winWaveNum;
     
     public Transform finishLine;
 
@@ -79,7 +80,7 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
         }
-        if(enemiesSpawned == 0 && _waveNumber >= _enemies.Count)
+        if(enemiesSpawned == 0 && _waveNumber == _winWaveNum)
         {
             Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
         }

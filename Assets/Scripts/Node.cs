@@ -84,6 +84,7 @@ public class Node : MonoBehaviour
             {
                 GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
                 ghostTurret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
+                Destroy(ghostTurret.GetComponent<TowerController>());
                 ghostTurret.GetComponent<CapsuleCollider>().isTrigger = true;
                 ghostTurret.GetComponent<BoxCollider>().isTrigger = true;
             }

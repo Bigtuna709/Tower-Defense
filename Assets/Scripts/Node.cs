@@ -86,9 +86,6 @@ public class Node : MonoBehaviour
                 ghostTurret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
                 ghostTurret.GetComponent<CapsuleCollider>().isTrigger = true;
                 ghostTurret.GetComponent<BoxCollider>().isTrigger = true;
-                Renderer r = gameObject.GetComponent<Renderer>();
-                Color materialColor = r.material.color;
-                r.material.color = new Color(materialColor.r, materialColor.g, materialColor.b, 0.5f);
             }
         }
     }

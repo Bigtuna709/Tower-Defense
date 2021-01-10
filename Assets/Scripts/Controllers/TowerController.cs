@@ -7,17 +7,15 @@ public class TowerController : MonoBehaviour
 {
     List<GameObject> _enemies = new List<GameObject>();
     Transform target;
+    float towerFireTime;
 
     public Transform fireLocation;
     public float turnSpeed = 10;
     public Transform partToRotate;
     public TowerType towerType;
-    public string towerName;
 
     [HideInInspector]
     public int towerSellCost;
-
-    [SerializeField] float towerFireTime;
 
     void OnTriggerEnter(Collider other)
     {
@@ -40,9 +38,9 @@ public class TowerController : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        for(int i = _enemies.Count - 1; i >= 0; i--)
+        for (int i = _enemies.Count - 1; i >= 0; i--)
         {
-            if(_enemies[i] != null)
+            if (_enemies[i] != null)
             {
                 target = _enemies[i].transform;
             }
@@ -51,7 +49,7 @@ public class TowerController : MonoBehaviour
                 _enemies.RemoveAt(i);
             }
         }
-        
+
         if (target != null)
         {
             Vector3 dir = target.position - transform.position;
@@ -67,10 +65,21 @@ public class TowerController : MonoBehaviour
     void Fire()
     {
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
-        if(tower != null)
+        if (tower != null)
         {
             if (ReadyToFire())
             {
+                if (tower.TowerFlame != null)
+                {
+                    var _instance = (GameObject)Instantiate(tower.TowerFlame, fireLocation.position, transform.rotation);
+                    Flamethrower flameThrower = _instance.GetComponent<Flamethrower>();
+
+                    if (flameThrower != null)
+                    {
+                        flameThrower.flameDamage = tower.TowerDamage;
+                    }
+                    Destroy(_instance, 1.5f);
+                }
                 if (tower.BulletPrefab != null)
                 {
                     var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
@@ -81,16 +90,17 @@ public class TowerController : MonoBehaviour
                         bullet.LookForTarget(target);
                         bullet.bulletDamage = tower.TowerDamage;
                     }
-
-                    towerFireTime = Time.time + tower.TowerRateOfFire;
                 }
                 else
                 {
                     return;
                 }
+
+                towerFireTime = Time.time + tower.TowerRateOfFire;
             }
         }
     }
+
     void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())

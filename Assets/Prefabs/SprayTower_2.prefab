@@ -567,9 +567,7 @@ MonoBehaviour:
   turnSpeed: 10
   partToRotate: {fileID: 4686696629097605295}
   towerType: 6
-  towerName: 
   towerSellCost: 0
-  towerFireTime: 0
 --- !u!136 &8518990288411054691
 CapsuleCollider:
   m_ObjectHideFlags: 0

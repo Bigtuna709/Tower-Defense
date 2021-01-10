@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-
+using System.Collections;
 public class EnemyController : MonoBehaviour
 {
     NavMeshAgent _navMeshAgent;
@@ -38,5 +38,17 @@ public class EnemyController : MonoBehaviour
             GameManager.Instance.ShowGoldChange(enemyReward);
             GameManager.Instance.EnemyDiedOrRemoved();
         }
+    }
+    public IEnumerator AddDamageOverTime(int damage)
+    {
+        totalEnemyHealth -= damage;
+        if (totalEnemyHealth <= 0)
+        {
+            Destroy(this.gameObject);
+            GameManager.Instance.ShowGoldChange(enemyReward);
+            GameManager.Instance.EnemyDiedOrRemoved();
+        }
+        yield return new WaitForSeconds(1f);
+
     }
 }

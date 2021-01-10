@@ -10,7 +10,7 @@ public class BuildManager : Singleton<BuildManager>
     [Header("Build Menu")]
     public Text towerNameText;
     public Text towerCostText;
-    public Text towerTypeText;
+    public Text towerRadiusText;
     public Text towerDamageText;
     public Image towerImage;
 
@@ -19,12 +19,13 @@ public class BuildManager : Singleton<BuildManager>
     public Text towerSellText;
     public Text towerUpgradeNameText;
     public Text towerUpgradeDamageText;
-    public Text towerUpgradeFireRateText;
+    public Text towerUpgradeFireRadiusText;
     public Text towerUpgradeCostText;
     public GameObject upgradeBTN;
 
     [HideInInspector]
     public int tempSellCost;
+    public int tempTowerRadius;
 
     GameObject _turretToBuild;
     TowerController selectedTower;
@@ -71,7 +72,7 @@ public class BuildManager : Singleton<BuildManager>
         towerImage.sprite = tower.TowerSprite;
         towerNameText.text = "Tower Name: " + tower.TowerName;
         towerDamageText.text = "Tower Damage: " + tower.TowerDamage.ToString();
-        towerTypeText.text = "Tower Type: " + tower.TowerType.ToString();
+        towerRadiusText.text = "Tower Shoot Radius: " + tower.TowerShootRadius.ToString();
         towerCostText.text = "Tower Cost: " + tower.TowerCost.ToString() + "gp";
     }
     void LoadTowerToBuild(TowerSO tower)
@@ -80,6 +81,7 @@ public class BuildManager : Singleton<BuildManager>
         towerCost = tower.TowerCost;
         tempTowerType = tower.TowerType;
         tempSellCost = tower.TowerSellAmount;
+        tempTowerRadius = tower.TowerShootRadius;
     }
     void EnterBuildMode()
     {
@@ -112,6 +114,7 @@ public class BuildManager : Singleton<BuildManager>
             towerUpgradeNameText.text = tower.TowerUpgrade.TowerName;
             towerUpgradeDamageText.text = "Tower Damage: " + tower.TowerUpgrade.TowerDamage.ToString();
             towerUpgradeCostText.text = "Cost to upgrade: " + tower.TowerUpgrade.TowerCost.ToString();
+            //towerUpgradeFireRadiusText.text = "Tower Shoot Radius: " + tower.TowerUpgrade.TowerShootRadius.ToString(); 
             towerSellText.text = "Sell tower for: " + tower.TowerSellAmount.ToString();
             upgradeBTN.GetComponent<ButtonENums>().towerType = tower.TowerUpgrade.TowerType;
         }
@@ -143,9 +146,10 @@ public class BuildManager : Singleton<BuildManager>
             if (GameManager.Instance.playerTotalGold >= newTower.TowerCost) 
             {
                 LoadTowerToBuild(newTower);
-                GameObject turret = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
-                turret.GetComponent<TowerController>().towerType = tempTowerType;
-                turret.GetComponent<TowerController>().towerSellCost = tempSellCost;
+                GameObject tower = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
+                tower.GetComponent<TowerController>().towerType = tempTowerType;
+                tower.GetComponent<TowerController>().towerSellCost = tempSellCost;
+                tower.GetComponent<SphereCollider>().radius = tempTowerRadius;
 
                 Destroy(selectedTower.gameObject);
                 towerUI.SetActive(false);

@@ -44,6 +44,7 @@ public class Node : MonoBehaviour
 
         turretToBuild.GetComponent<TowerController>().towerType = BuildManager.Instance.tempTowerType;
         turretToBuild.GetComponent<TowerController>().towerSellCost = BuildManager.Instance.tempSellCost;
+        turretToBuild.GetComponent<SphereCollider>().radius = BuildManager.Instance.tempTowerRadius;
 
         GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
         GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerUpgrade: {fileID: 0}
   _towerName: Basic Tower Level 3
+  _towerShootRadius: 7
   _towerCost: 60
   _towerSellAmount: 45
   _towerDamage: 8

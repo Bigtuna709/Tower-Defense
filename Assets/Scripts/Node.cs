@@ -33,7 +33,7 @@ public class Node : MonoBehaviour
             BuildManager.Instance.towerUI.SetActive(false);
             return;
         }
-        Destroy(ghostTurret);
+        RemoveGhostTower();
         BuildTowerOnNode();
     }
 

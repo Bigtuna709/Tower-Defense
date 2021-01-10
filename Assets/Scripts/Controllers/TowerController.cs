@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
 
 public class TowerController : MonoBehaviour
 {
+    List<GameObject> _enemies = new List<GameObject>();
     Transform target;
 
     public Transform fireLocation;
@@ -17,42 +19,47 @@ public class TowerController : MonoBehaviour
 
     [SerializeField] float towerFireTime;
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            GameObject go = other.gameObject;
+            if (!_enemies.Contains(go))
+            {
+                _enemies.Add(go);
+            }
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            GameObject go = other.gameObject;
+            _enemies.Remove(go);
+        }
+    }
     void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        for(int i = _enemies.Count - 1; i >= 0; i--)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            float shortestDistance = Mathf.Infinity;
-            GameObject nearestEnemy = null;
-
-            foreach(GameObject enemy in enemies)
+            if(_enemies[i] != null)
             {
-                float distanceToEnemy = Vector3.Distance(GameManager.Instance.finishLine.position, enemy.transform.position);
-                if(distanceToEnemy < shortestDistance)
-                {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = enemy;
-                }
-            }
-
-            if(nearestEnemy != null)
-            {
-                target = nearestEnemy.transform;
+                target = _enemies[i].transform;
             }
             else
             {
-                target = null;
+                _enemies.RemoveAt(i);
             }
+        }
+        
+        if (target != null)
+        {
+            Vector3 dir = target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-            if (target != null)
-            {
-                Vector3 dir = target.position - transform.position;
-                Quaternion lookRotation = Quaternion.LookRotation(dir);
-                Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-                partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-                Fire();
-            }
+            Fire();
         }
     }
 

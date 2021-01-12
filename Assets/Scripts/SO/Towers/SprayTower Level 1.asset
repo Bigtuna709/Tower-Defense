@@ -17,12 +17,12 @@ MonoBehaviour:
   _towerShootRadius: 3
   _towerCost: 25
   _towerSellAmount: 12
-  _towerDamage: 3
+  _towerDamage: 4
   _towerRateOfFire: 0
   _towerPrefab: {fileID: 8196823191359567429, guid: 704b568e790c5434c84e6fc952d41fd8,
     type: 3}
   _bulletPrefab: {fileID: 0}
-  _towerFlame: {fileID: 7833893508551325171, guid: 06b2c022e44cc0b40893c6477bca4738,
+  _towerFlame: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,
     type: 3}
   _towerSprite: {fileID: 21300000, guid: 633cc41217970fc49b8cb89d141fccd5, type: 3}
   _towerType: 6

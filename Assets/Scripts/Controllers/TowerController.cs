@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.VFX;
 
 public class TowerController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class TowerController : MonoBehaviour
     public float turnSpeed = 10;
     public Transform partToRotate;
     public TowerType towerType;
+    public VisualEffect flameEffect;
+
+    [SerializeField] ParticleSystem flameParticle;
 
     [HideInInspector]
     public int towerSellCost;
@@ -35,6 +39,7 @@ public class TowerController : MonoBehaviour
             GameObject go = other.gameObject;
             _enemies.Remove(go);
         }
+        FlameOff();
     }
     void OnTriggerStay(Collider other)
     {
@@ -68,18 +73,20 @@ public class TowerController : MonoBehaviour
         if (tower != null)
         {
             if (ReadyToFire())
-            {
+            {            
                 if (tower.TowerFlame != null)
                 {
-                    var _instance = (GameObject)Instantiate(tower.TowerFlame, fireLocation.position, transform.rotation);
-                    Flamethrower flameThrower = _instance.GetComponent<Flamethrower>();
+                    flameParticle = tower.TowerFlame;
+                    flameParticle.gameObject.SetActive(true);
+                    flameEffect.Play();                    
 
-                    if (flameThrower != null)
+                    Flamethrower flame = flameParticle.GetComponent<Flamethrower>();
+                    if(flame != null)
                     {
-                        flameThrower.flameDamage = tower.TowerDamage;
-                    }
-                    Destroy(_instance, 1.5f);
+                        flame.flameDamage = tower.TowerDamage;
+                    }                    
                 }
+
                 if (tower.BulletPrefab != null)
                 {
                     var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
@@ -98,6 +105,14 @@ public class TowerController : MonoBehaviour
 
                 towerFireTime = Time.time + tower.TowerRateOfFire;
             }
+        }
+    }
+
+    void FlameOff()
+    {
+        if (flameEffect != null)
+        {
+            flameEffect.Stop();
         }
     }
 

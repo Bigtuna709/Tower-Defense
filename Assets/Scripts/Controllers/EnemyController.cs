@@ -34,9 +34,12 @@ public class EnemyController : MonoBehaviour
         totalEnemyHealth -= damage;
         if(totalEnemyHealth <= 0)
         {
-            Destroy(this.gameObject);
-            GameManager.Instance.ShowGoldChange(enemyReward);
-            GameManager.Instance.EnemyDiedOrRemoved();
+            if (this.gameObject != null)
+            {
+                Destroy(this.gameObject);
+                GameManager.Instance.ShowGoldChange(enemyReward);
+                GameManager.Instance.EnemyDiedOrRemoved();
+            }
         }
     }
     public IEnumerator AddDamageOverTime(int damage)

@@ -31,7 +31,7 @@ public class TowerSO : ScriptableObject
     [SerializeField] float _towerRateOfFire;
     [SerializeField] GameObject _towerPrefab;
     [SerializeField] GameObject _bulletPrefab;
-    [SerializeField] GameObject _towerFlame;
+    [SerializeField] ParticleSystem _towerFlame;
     [SerializeField] Sprite _towerSprite;
     [SerializeField] TowerType _towerType;
 
@@ -98,7 +98,7 @@ public class TowerSO : ScriptableObject
             return _bulletPrefab;
         }
     }
-    public GameObject TowerFlame
+    public ParticleSystem TowerFlame
     {
         get
         {

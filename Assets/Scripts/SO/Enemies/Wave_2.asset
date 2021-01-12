@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave_2
   m_EditorClassIdentifier: 
   _enemyName: Capsule
-  _enemyHealth: 10
+  _enemyHealth: 100
   _enemySpeed: 3.5
   _goldReward: 1
   _enemyPrefab: {fileID: 3033932112030531685, guid: 2ae6e334c1cc52c41b7e896a60cae239,

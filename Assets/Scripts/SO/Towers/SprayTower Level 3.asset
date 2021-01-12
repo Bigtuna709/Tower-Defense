@@ -19,7 +19,7 @@ MonoBehaviour:
   _towerSellAmount: 50
   _towerDamage: 8
   _towerRateOfFire: 0
-  _towerPrefab: {fileID: 8196823191359567429, guid: 359bf67cb9cc0cd469a50a11e8546418,
+  _towerPrefab: {fileID: 8196823191359567429, guid: a884167abd88a674faa215c063307bed,
     type: 3}
   _bulletPrefab: {fileID: 0}
   _towerFlame: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,

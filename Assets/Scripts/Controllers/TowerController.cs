@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
@@ -38,8 +39,8 @@ public class TowerController : MonoBehaviour
         {
             GameObject go = other.gameObject;
             _enemies.Remove(go);
+            StartCoroutine(FlameOFf());
         }
-        FlameOff();
     }
     void OnTriggerStay(Collider other)
     {
@@ -52,6 +53,7 @@ public class TowerController : MonoBehaviour
             else
             {
                 _enemies.RemoveAt(i);
+                StartCoroutine(FlameOFf());
             }
         }
 
@@ -63,6 +65,10 @@ public class TowerController : MonoBehaviour
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
             Fire();
+        }
+        else
+        {
+            StartCoroutine(FlameOFf());
         }
     }
 
@@ -108,8 +114,9 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void FlameOff()
+    IEnumerator FlameOFf()
     {
+        yield return new WaitForSeconds(1f);
         if (flameEffect != null)
         {
             flameEffect.Stop();

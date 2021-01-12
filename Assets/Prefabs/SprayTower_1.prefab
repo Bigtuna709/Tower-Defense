@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireLocation: {fileID: 6718713653577806569}
-  turnSpeed: 10
+  turnSpeed: 5
   partToRotate: {fileID: 4686696629097605295}
   towerType: 6
   flameEffect: {fileID: 7814489394518751242}
@@ -717,6 +717,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6718713653577806569}
     m_Modifications:
+    - target: {fileID: -9199968430204823986, guid: 251fc6b1a80cd8343add287f22274dc4,
+        type: 3}
+      propertyPath: flameDamage
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3134807281109703182, guid: 251fc6b1a80cd8343add287f22274dc4,
         type: 3}
       propertyPath: m_LocalPosition.x

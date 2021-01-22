@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 public class GameManager : Singleton<GameManager>
 {
     public List<EnemySO> _enemies = new List<EnemySO>();
+    public List<GameObject> builtTowers = new List<GameObject>();
 
     public int playerTotalGold;
     public int playerTotalLives;
@@ -97,4 +99,23 @@ public class GameManager : Singleton<GameManager>
         Instance.playerGoldText.text = playerTotalGold.ToString();
     }
 
+    public void RemoveEnemyFromTowers(GameObject enemy)
+    {
+        foreach(GameObject tower in builtTowers)
+        {
+            Debug.Log("test");
+            var towerController = tower.GetComponent<TowerController>();
+            if (towerController._Enemies.Contains(enemy))
+            {
+                towerController._Enemies = towerController._Enemies.Where(item => item != null).ToList();
+                towerController._Enemies.Remove(enemy);
+            }
+            if (towerController._Enemies.Count == 0)
+            {
+                towerController.flameEffectIsPlaying = false;
+                towerController.FlameController();
+            }
+            
+        }
+    }
 }

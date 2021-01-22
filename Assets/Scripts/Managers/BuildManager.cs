@@ -114,7 +114,6 @@ public class BuildManager : Singleton<BuildManager>
             towerUpgradeNameText.text = tower.TowerUpgrade.TowerName;
             towerUpgradeDamageText.text = "Tower Damage: " + tower.TowerUpgrade.TowerDamage.ToString();
             towerUpgradeCostText.text = "Cost to upgrade: " + tower.TowerUpgrade.TowerCost.ToString();
-            //towerUpgradeFireRadiusText.text = "Tower Shoot Radius: " + tower.TowerUpgrade.TowerShootRadius.ToString(); 
             towerSellText.text = "Sell tower for: " + tower.TowerSellAmount.ToString();
             upgradeBTN.GetComponent<ButtonENums>().towerType = tower.TowerUpgrade.TowerType;
         }
@@ -132,6 +131,7 @@ public class BuildManager : Singleton<BuildManager>
         if (selectedTower != null)
         {
             GameManager.Instance.ShowGoldChange(selectedTower.towerSellCost);
+            GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
             towerUI.SetActive(false);
             Destroy(selectedTower.gameObject);
         }
@@ -145,16 +145,18 @@ public class BuildManager : Singleton<BuildManager>
         {
             if (GameManager.Instance.playerTotalGold >= newTower.TowerCost) 
             {
-                LoadTowerToBuild(newTower);
-                GameObject tower = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
-                tower.GetComponent<TowerController>().towerType = tempTowerType;
-                tower.GetComponent<TowerController>().towerSellCost = tempSellCost;
-                tower.GetComponent<SphereCollider>().radius = tempTowerRadius;
-
                 Destroy(selectedTower.gameObject);
+                GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
                 towerUI.SetActive(false);
                 GameManager.Instance.playerTotalGold -= newTower.TowerCost;
                 GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+
+                LoadTowerToBuild(newTower);
+                GameObject tower = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
+                GameManager.Instance.builtTowers.Add(tower);
+                tower.GetComponent<TowerController>().towerType = tempTowerType;
+                tower.GetComponent<TowerController>().towerSellCost = tempSellCost;
+                tower.GetComponent<SphereCollider>().radius = tempTowerRadius;
             }
             else
             {
@@ -167,4 +169,5 @@ public class BuildManager : Singleton<BuildManager>
         }
 
     }
+
 }

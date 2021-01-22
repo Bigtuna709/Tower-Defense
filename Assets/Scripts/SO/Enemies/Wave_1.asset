@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyName: Ant_1
   _enemyHealth: 10
-  _enemySpeed: 3
+  _enemySpeed: 2
   _goldReward: 1
   _enemyPrefab: {fileID: 1595283389852895086, guid: 08f1c15b9e03564438638dadb1910f9e,
     type: 3}

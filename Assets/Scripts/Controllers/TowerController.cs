@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
@@ -8,7 +7,8 @@ using UnityEngine.VFX;
 public class TowerController : MonoBehaviour
 {
     List<GameObject> _enemies = new List<GameObject>();
-    Transform target;
+    public List<GameObject> _Enemies { get { return _enemies; } set { _enemies = value; } } 
+    public Transform target;
     float towerFireTime;
 
     public Transform fireLocation;
@@ -16,12 +16,29 @@ public class TowerController : MonoBehaviour
     public Transform partToRotate;
     public TowerType towerType;
     public VisualEffect flameEffect;
-
-    [SerializeField] ParticleSystem flameParticle;
+    public bool flameEffectIsPlaying = false;
+    public ParticleSystem flameParticle;
 
     [HideInInspector]
     public int towerSellCost;
 
+    public void FlameController()
+    {
+        if(flameEffect == null)
+        {
+            return;
+        }
+        if(flameEffectIsPlaying)
+        {
+            flameEffect.Play();
+            Debug.Log("Played part");
+        }
+        else
+        {
+            flameEffect.Stop();
+            Debug.Log("Stopped part");
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -30,6 +47,7 @@ public class TowerController : MonoBehaviour
             if (!_enemies.Contains(go))
             {
                 _enemies.Add(go);
+                ShootFlame();
             }
         }
     }
@@ -39,22 +57,20 @@ public class TowerController : MonoBehaviour
         {
             GameObject go = other.gameObject;
             _enemies.Remove(go);
-            StartCoroutine(FlameOFf());
+            _enemies = _enemies.Where(item => item != null).ToList();
+
+            flameEffectIsPlaying = false;
+            FlameController();
+            
         }
     }
+
     void OnTriggerStay(Collider other)
     {
-        for (int i = _enemies.Count - 1; i >= 0; i--)
+        if (other.CompareTag("Enemy"))
         {
-            if (_enemies[i] != null)
-            {
-                target = _enemies[i].transform;
-            }
-            else
-            {
-                _enemies.RemoveAt(i);
-                StartCoroutine(FlameOFf());
-            }
+            _enemies = _enemies.Where(item => item != null).ToList();
+            target = _enemies.FirstOrDefault().transform;
         }
 
         if (target != null)
@@ -64,35 +80,40 @@ public class TowerController : MonoBehaviour
             Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-            Fire();
+            FireBullet();
+        }
+    }
+    void ShootFlame()
+    {
+        var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
+        if (tower != null)
+        {
+            if (tower.TowerFlame != null)
+            {
+                flameParticle = tower.TowerFlame;
+                flameEffectIsPlaying = true;
+                FlameController();
+                Flamethrower flame = flameParticle.GetComponent<Flamethrower>();
+                if (flame != null)
+                {
+                    flame.flameDamage = tower.TowerDamage;
+                }
+            }
         }
         else
         {
-            StartCoroutine(FlameOFf());
+            return;
         }
     }
 
     bool ReadyToFire() => Time.time >= towerFireTime;
-    void Fire()
+    void FireBullet()
     {
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
         if (tower != null)
         {
             if (ReadyToFire())
             {            
-                if (tower.TowerFlame != null)
-                {
-                    flameParticle = tower.TowerFlame;
-                    flameParticle.gameObject.SetActive(true);
-                    flameEffect.Play();                    
-
-                    Flamethrower flame = flameParticle.GetComponent<Flamethrower>();
-                    if(flame != null)
-                    {
-                        flame.flameDamage = tower.TowerDamage;
-                    }                    
-                }
-
                 if (tower.BulletPrefab != null)
                 {
                     var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
@@ -108,18 +129,8 @@ public class TowerController : MonoBehaviour
                 {
                     return;
                 }
-
                 towerFireTime = Time.time + tower.TowerRateOfFire;
             }
-        }
-    }
-
-    IEnumerator FlameOFf()
-    {
-        yield return new WaitForSeconds(1f);
-        if (flameEffect != null)
-        {
-            flameEffect.Stop();
         }
     }
 

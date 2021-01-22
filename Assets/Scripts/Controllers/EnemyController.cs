@@ -28,30 +28,19 @@ public class EnemyController : MonoBehaviour
             GameManager.Instance.EnemyDiedOrRemoved();
         }   
     }
-
+ 
     public void AddDamage(int damage)
     {
         totalEnemyHealth -= damage;
         if(totalEnemyHealth <= 0)
         {
-            if (this.gameObject != null)
+            if (gameObject != null)
             {
-                Destroy(this.gameObject);
+                GameManager.Instance.RemoveEnemyFromTowers(gameObject);
                 GameManager.Instance.ShowGoldChange(enemyReward);
                 GameManager.Instance.EnemyDiedOrRemoved();
+                Destroy(gameObject);
             }
         }
-    }
-    public IEnumerator AddDamageOverTime(int damage)
-    {
-        totalEnemyHealth -= damage;
-        if (totalEnemyHealth <= 0)
-        {
-            Destroy(this.gameObject);
-            GameManager.Instance.ShowGoldChange(enemyReward);
-            GameManager.Instance.EnemyDiedOrRemoved();
-        }
-        yield return new WaitForSeconds(1f);
-
     }
 }

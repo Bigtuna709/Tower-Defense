@@ -8,7 +8,7 @@ public class Flamethrower : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-          StartCoroutine(other.GetComponent<EnemyController>().AddDamageOverTime(flameDamage));            
+            other.GetComponent<EnemyController>().AddDamage(flameDamage);            
         }
     }
 }

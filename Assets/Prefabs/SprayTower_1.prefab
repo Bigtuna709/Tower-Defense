@@ -565,11 +565,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a66ea39b12c7524a8d66997429a3c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   fireLocation: {fileID: 6718713653577806569}
-  turnSpeed: 5
+  turnSpeed: 10
   partToRotate: {fileID: 4686696629097605295}
   towerType: 6
   flameEffect: {fileID: 7814489394518751242}
+  flameEffectIsPlaying: 0
   flameParticle: {fileID: 0}
   towerSellCost: 12
 --- !u!136 &8518990288411054691
@@ -721,6 +723,21 @@ PrefabInstance:
         type: 3}
       propertyPath: flameDamage
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3134807281109703182, guid: 251fc6b1a80cd8343add287f22274dc4,
         type: 3}

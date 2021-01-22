@@ -41,7 +41,7 @@ public class Node : MonoBehaviour
     {
         GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
         turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
-
+        GameManager.Instance.builtTowers.Add(turret);
         turretToBuild.GetComponent<TowerController>().towerType = BuildManager.Instance.tempTowerType;
         turretToBuild.GetComponent<TowerController>().towerSellCost = BuildManager.Instance.tempSellCost;
         turretToBuild.GetComponent<SphereCollider>().radius = BuildManager.Instance.tempTowerRadius;

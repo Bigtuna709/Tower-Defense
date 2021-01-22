@@ -8293,6 +8293,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2724bb8f0ebdf754c9b62499dd7b5f8b, type: 2}
   - {fileID: 11400000, guid: 6bd0e3182b088df489c851e3b8b5e1f0, type: 2}
   - {fileID: 11400000, guid: 72689e29268d22f428309ab101dbac21, type: 2}
+  builtTowers: []
   playerTotalGold: 500
   playerTotalLives: 20
   enemiesSpawned: 0

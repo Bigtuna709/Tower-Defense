@@ -23,5 +23,6 @@ MonoBehaviour:
     type: 3}
   _bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
     type: 3}
-  _towerSprite: {fileID: 21300000, guid: 633cc41217970fc49b8cb89d141fccd5, type: 3}
+  _towerFlame: {fileID: 0}
+  _towerSprite: {fileID: 21300000, guid: 0d594a7dbafb85c40a5794dd9b9b7946, type: 3}
   _towerType: 0

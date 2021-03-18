@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 559327561998103099}
   - component: {fileID: 1868245535423315102}
-  - component: {fileID: 3769462361189015412}
   - component: {fileID: 8171300884160131004}
   m_Layer: 0
   m_Name: Cannon_lvl3_FBX Variant
@@ -48,25 +47,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3769462361189015412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903237639049259137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a66ea39b12c7524a8d66997429a3c65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireLocation: {fileID: 1652235508543159052}
-  turnSpeed: 10
-  partToRotate: {fileID: 4520390503876426020}
-  towerType: 1
-  towerName: Cannon level 3
-  towerSellCost: 0
-  towerFireTime: 0
 --- !u!136 &8171300884160131004
 CapsuleCollider:
   m_ObjectHideFlags: 0

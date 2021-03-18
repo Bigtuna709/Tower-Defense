@@ -87,33 +87,34 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
         }
     }
+    public void ShowGoldChange(int amount)
+    {
+        playerTotalGold += amount;
+        Instance.playerGoldText.text = playerTotalGold.ToString();
+    }
     public void EnemyDiedOrRemoved()
     {
         enemiesSpawned--;
         CheckForWaveOver();
         CheckForGameOver();
     }
-    public void ShowGoldChange(int amount)
-    {
-        playerTotalGold += amount;
-        Instance.playerGoldText.text = playerTotalGold.ToString();
-    }
 
     public void RemoveEnemyFromTowers(GameObject enemy)
     {
         foreach(GameObject tower in builtTowers)
         {
-            Debug.Log("test");
             var towerController = tower.GetComponent<TowerController>();
-            if (towerController._Enemies.Contains(enemy))
-            {
-                towerController._Enemies = towerController._Enemies.Where(item => item != null).ToList();
-                towerController._Enemies.Remove(enemy);
-            }
-            if (towerController._Enemies.Count == 0)
-            {
-                towerController.flameEffectIsPlaying = false;
-                towerController.FlameController();
+           // if (towerController._Enemies.Contains(enemy))
+           if(towerController._Enemies.Count > 0)
+                {
+                    // towerController._Enemies.RemoveAt(0);
+                    towerController._Enemies.Remove(enemy);
+                  towerController._Enemies = towerController._Enemies.Where(item => item != null).ToList();
+                if (towerController._Enemies.Count == 0)
+                {
+                    towerController.flameEffectIsPlaying = false;
+                    towerController.FlameController();
+                }
             }
             
         }

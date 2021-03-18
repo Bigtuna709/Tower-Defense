@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80a8649b02ae3249be9e77cb04c707b, type: 3}
+  m_Name: Rocket Tower Level 2
+  m_EditorClassIdentifier: 
+  _towerUpgrade: {fileID: 11400000, guid: fc9ae3dcad6ecc54f928ea8c06d4eede, type: 2}
+  _towerName: Rocket Tower Level 2
+  _towerShootRadius: 9
+  _towerCost: 60
+  _towerSellAmount: 30
+  _towerDamage: 15
+  _towerRateOfFire: 1.5
+  _towerPrefab: {fileID: 4228429763521997480, guid: 0470fc573e8fce04eb38eb836793cfab,
+    type: 3}
+  _bulletPrefab: {fileID: 8519911300366328304, guid: d50e59e091456c644bb752b0c771ed9c,
+    type: 3}
+  _towerFlame: {fileID: 0}
+  _towerSprite: {fileID: 21300000, guid: e90d9a4ce4f752f478c5f3598bd58ccb, type: 3}
+  _towerType: 4

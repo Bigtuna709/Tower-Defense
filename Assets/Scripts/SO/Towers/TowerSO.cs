@@ -13,9 +13,6 @@ using System.Collections.Generic;
         Spray1,
         Spray2,
         Spray3,
-        Magic1,
-        Magic2,
-        Magic3
     }
 
 [CreateAssetMenu(fileName = "Tower", menuName = "TowerSO", order = 2)]

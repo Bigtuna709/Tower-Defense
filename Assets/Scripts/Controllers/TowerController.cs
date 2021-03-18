@@ -31,11 +31,13 @@ public class TowerController : MonoBehaviour
         if(flameEffectIsPlaying)
         {
             flameEffect.Play();
+            flameParticle.Play();
             Debug.Log("Played part");
         }
         else
         {
             flameEffect.Stop();
+            flameParticle.Stop();
             Debug.Log("Stopped part");
         }
     }
@@ -58,7 +60,10 @@ public class TowerController : MonoBehaviour
             GameObject go = other.gameObject;
             _enemies.Remove(go);
             _enemies = _enemies.Where(item => item != null).ToList();
-
+            if(_Enemies.Count > 0)
+            {
+                return;
+            }
             flameEffectIsPlaying = false;
             FlameController();
             
@@ -69,8 +74,12 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            _enemies = _enemies.Where(item => item != null).ToList();
-            target = _enemies.FirstOrDefault().transform;
+            if (_enemies.Count > 0)
+            {
+                // *Fix targetting* //
+                _enemies = _enemies.Where(item => item != null).ToList();
+                target = _enemies.FirstOrDefault().transform;
+            }
         }
 
         if (target != null)
@@ -116,13 +125,32 @@ public class TowerController : MonoBehaviour
             {            
                 if (tower.BulletPrefab != null)
                 {
-                    var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
-                    Bullet bullet = instance.GetComponent<Bullet>();
+                    // var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
+                    // Bullet bullet = instance.GetComponent<Bullet>();
 
-                    if (bullet != null)
+                    //Transform newBullet = ObjectPoolManager.Instance.GetBullet(tower.BulletPrefab);
+                    if (tower.BulletPrefab.CompareTag("Bullet"))
                     {
+                        Transform newBullet = ObjectPoolManager.Instance.GetBullet().transform;
+                        newBullet.transform.position = fireLocation.transform.position;
+                        newBullet.gameObject.SetActive(true);
+                        Bullet bullet = newBullet.gameObject.GetComponent<Bullet>();
                         bullet.LookForTarget(target);
                         bullet.bulletDamage = tower.TowerDamage;
+                        //if (bullet != null)
+                        //{
+                        //    bullet.LookForTarget(target);
+                        //    bullet.bulletDamage = tower.TowerDamage;
+                        //}
+                    }
+                    else
+                    {
+                        Transform newRocket = ObjectPoolManager.Instance.GetRocket().transform;
+                        newRocket.transform.position = fireLocation.transform.position;
+                        newRocket.gameObject.SetActive(true);
+                        Bullet rocket = newRocket.gameObject.GetComponent<Bullet>();
+                        rocket.LookForTarget(target);
+                        rocket.bulletDamage = tower.TowerDamage;
                     }
                 }
                 else

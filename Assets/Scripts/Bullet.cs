@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
         if(target == null)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyController>().AddDamage(bulletDamage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

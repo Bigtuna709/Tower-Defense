@@ -16,13 +16,32 @@ public class TowerController : MonoBehaviour
     public TowerType towerType;
     public VisualEffect flameEffect;
     public bool flameEffectIsPlaying = false;
+    public GameObject flameParticleGO;
     public ParticleSystem flameParticle;
 
     [HideInInspector]
     public int towerSellCost;
 
+    private void OnEnable()
+    {
+        CheckFlameParticle();
+    }
+
+    private void CheckFlameParticle()
+    {
+        if (flameParticleGO != null)
+        {
+            flameParticleGO.SetActive(false);
+        }
+        else
+        {
+            return;
+        }
+    }
+
     public void FlameController()
     {
+        CheckFlameParticle();
         if(flameEffect == null)
         {
             return;
@@ -30,13 +49,15 @@ public class TowerController : MonoBehaviour
         if(flameEffectIsPlaying)
         {
             flameEffect.Play();
-            flameParticle.Play();
+            flameParticleGO.SetActive(true);
+            //flameParticle.Play();
             Debug.Log("Played part");
         }
         else
         {
             flameEffect.Stop();
-            flameParticle.Stop();
+            flameParticleGO.SetActive(false);
+            //flameParticle.Stop();
             Debug.Log("Stopped part");
         }
     }
@@ -102,7 +123,7 @@ public class TowerController : MonoBehaviour
                 flameParticle = tower.TowerFlame;
                 flameEffectIsPlaying = true;
                 FlameController();
-                Flamethrower flame = flameParticle.GetComponent<Flamethrower>();
+                var flame = flameParticle.GetComponent<Flamethrower>();
                 if (flame != null)
                 {
                     flame.flameDamage = tower.TowerDamage;

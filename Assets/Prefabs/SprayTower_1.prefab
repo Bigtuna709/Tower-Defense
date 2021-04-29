@@ -565,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a66ea39b12c7524a8d66997429a3c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Enemies: []
   target: {fileID: 0}
   fireLocation: {fileID: 6718713653577806569}
   turnSpeed: 10
@@ -572,6 +573,7 @@ MonoBehaviour:
   towerType: 6
   flameEffect: {fileID: 7814489394518751242}
   flameEffectIsPlaying: 0
+  flameParticleGO: {fileID: 5558278704041347416}
   flameParticle: {fileID: 0}
   towerSellCost: 12
 --- !u!136 &8518990288411054691
@@ -801,6 +803,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251fc6b1a80cd8343add287f22274dc4, type: 3}
+--- !u!1 &5558278704041347416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3930753903571635380, guid: 251fc6b1a80cd8343add287f22274dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8912112188548629996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5777903151856541666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3134807281109703182, guid: 251fc6b1a80cd8343add287f22274dc4,

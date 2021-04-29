@@ -104,19 +104,23 @@ public class GameManager : Singleton<GameManager>
         foreach(GameObject tower in builtTowers)
         {
             var towerController = tower.GetComponent<TowerController>();
-           // if (towerController._Enemies.Contains(enemy))
-           if(towerController._Enemies.Count > 0)
+            if (towerController._Enemies.Count > 0)
+            {
+                if(towerController._Enemies.Contains(enemy))
                 {
-                    // towerController._Enemies.RemoveAt(0);
                     towerController._Enemies.Remove(enemy);
-                  towerController._Enemies = towerController._Enemies.Where(item => item != null).ToList();
-                if (towerController._Enemies.Count == 0)
-                {
-                    towerController.flameEffectIsPlaying = false;
-                    towerController.FlameController();
+                    Debug.Log("Enemy Removed");
+                    if (towerController._Enemies.Count == 0)
+                    {
+                        towerController.flameEffectIsPlaying = false;
+                        towerController.FlameController();
+                    }
                 }
-            }
-            
+                else
+                {
+                    Debug.Log("Enemy not in _Enemies list!");
+                }
+            }           
         }
     }
 }

@@ -11,6 +11,7 @@ public class EnemySO : ScriptableObject
     [SerializeField] int _waveNum;
     [SerializeField] int _spawnCount;
     [SerializeField] float _spawnDelay;
+    [SerializeField] int _amountToPool;
 
     public string EnemyName
     {
@@ -66,6 +67,13 @@ public class EnemySO : ScriptableObject
         get
         {
             return _spawnDelay;
+        }
+    }
+    public int AmountToPool
+    {
+        get
+        {
+            return _amountToPool;
         }
     }
 }

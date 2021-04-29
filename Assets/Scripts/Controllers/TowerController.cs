@@ -6,8 +6,7 @@ using UnityEngine.VFX;
 
 public class TowerController : MonoBehaviour
 {
-    List<GameObject> _enemies = new List<GameObject>();
-    public List<GameObject> _Enemies { get { return _enemies; } set { _enemies = value; } } 
+    public List<GameObject> _Enemies = new List<GameObject>(); 
     public Transform target;
     float towerFireTime;
 
@@ -46,9 +45,9 @@ public class TowerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameObject go = other.gameObject;
-            if (!_enemies.Contains(go))
+            if (!_Enemies.Contains(go))
             {
-                _enemies.Add(go);
+                _Enemies.Add(go);
                 ShootFlame();
             }
         }
@@ -58,8 +57,7 @@ public class TowerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameObject go = other.gameObject;
-            _enemies.Remove(go);
-            _enemies = _enemies.Where(item => item != null).ToList();
+            _Enemies.Remove(go);
             if(_Enemies.Count > 0)
             {
                 return;
@@ -74,14 +72,16 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (_enemies.Count > 0)
+            if (_Enemies.Count > 0)
             {
                 // *Fix targetting* //
-                _enemies = _enemies.Where(item => item != null).ToList();
-                target = _enemies.FirstOrDefault().transform;
+                target = _Enemies.FirstOrDefault().transform;
             }
         }
-
+        if(_Enemies.Count == 0)
+        {
+            target = null;
+        }
         if (target != null)
         {
             Vector3 dir = target.position - transform.position;
@@ -116,6 +116,7 @@ public class TowerController : MonoBehaviour
     }
 
     bool ReadyToFire() => Time.time >= towerFireTime;
+    
     void FireBullet()
     {
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);

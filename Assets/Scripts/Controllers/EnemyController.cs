@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
                 GameManager.Instance.RemoveEnemyFromTowers(gameObject);
                 GameManager.Instance.ShowGoldChange(enemyReward);
                 GameManager.Instance.EnemyDiedOrRemoved();
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

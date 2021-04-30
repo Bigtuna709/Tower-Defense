@@ -2,11 +2,12 @@
 
 public class Bullet : MonoBehaviour
 {
-
     Transform target;
 
     [HideInInspector]
     public int bulletDamage;
+    public float rocketDamageArea;
+    public int rocketAreaDamage;
 
     public float speed;
     public void LookForTarget(Transform _target)
@@ -31,7 +32,22 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyController>().AddDamage(bulletDamage);
+
+            CheckforEnemiesInBlastRadius();
+
             gameObject.SetActive(false);
+        }
+    }
+
+    void CheckforEnemiesInBlastRadius()
+    {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, rocketDamageArea);
+        foreach(Collider enemy in enemies)
+        {
+            if(enemy.GetComponent<EnemyController>())
+            {
+                enemy.GetComponent<EnemyController>().AddDamage(rocketAreaDamage);
+            }
         }
     }
 

@@ -173,7 +173,8 @@ public class TowerController : MonoBehaviour
                         Bullet rocket = newRocket.gameObject.GetComponent<Bullet>();
                         rocket.LookForTarget(target);
                         rocket.bulletDamage = tower.TowerDamage;
-                    }
+                        rocket.rocketAreaDamage = tower.TowerAreaDamage;
+                        rocket.rocketDamageArea = tower.TowerAreaDamageRadius;                    }
                 }
                 else
                 {

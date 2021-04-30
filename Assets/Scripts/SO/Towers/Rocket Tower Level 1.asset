@@ -18,7 +18,9 @@ MonoBehaviour:
   _towerCost: 50
   _towerSellAmount: 25
   _towerDamage: 10
+  _towerAreaDamage: 5
   _towerRateOfFire: 1.5
+  _towerAreaDamageRadius: 3.5
   _towerPrefab: {fileID: 4228429763521997480, guid: 3fc17b9415071184da8c415118dd6fd5,
     type: 3}
   _bulletPrefab: {fileID: 8519911300366328304, guid: d50e59e091456c644bb752b0c771ed9c,

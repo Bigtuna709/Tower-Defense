@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
@@ -27,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] Transform spawnLocation;
     [SerializeField] int _winWaveNum;
+   
     
     public Transform finishLine;
 
@@ -57,8 +57,10 @@ public class GameManager : Singleton<GameManager>
                     yield return new WaitForSeconds(enemy.SpawnDelay);
                     var instance = GameObject.Instantiate(enemy.EnemyPrefab, spawnLocation.position, transform.rotation);
                     instance.GetComponent<NavMeshAgent>().speed = enemy.EnemySpeed;
-                    instance.GetComponent<EnemyController>().totalEnemyHealth = enemy.EnemyHealth;
-                    instance.GetComponent<EnemyController>().enemyReward = enemy.GoldReward;
+
+                    var instanceStats = instance.GetComponent<EnemyController>();
+                    instanceStats.totalEnemyHealth = enemy.EnemyHealth;
+                    instanceStats.enemyReward = enemy.GoldReward;
                     enemiesSpawned++;
                 }
             }

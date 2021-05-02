@@ -34,12 +34,13 @@ public class BuildManager : Singleton<BuildManager>
 
     public int towerCost;
     public TowerType tempTowerType;
+    public Animator animator;
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (buildMode && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitBuildMode();
-            towerUI.SetActive(false);
         }
     }
     public GameObject GetTurretToBuild()
@@ -50,18 +51,17 @@ public class BuildManager : Singleton<BuildManager>
     {
         if (!buildMode)
         {
-            EnterBuildMode();
             var tower = _towers.FirstOrDefault(x => x.TowerType == button.towerType);
             if (tower != null)
             {
                 if (GameManager.Instance.playerTotalGold >= tower.TowerCost)
                 {
+                    EnterBuildMode();
                     LoadTowerStats(tower);
                     LoadTowerToBuild(tower);
                 }
                 else
                 {
-                    ExitBuildMode();
                     Debug.Log("<color=red>Not enough gold! - TODO: Display on screen</color>");
                 }
             }
@@ -85,14 +85,13 @@ public class BuildManager : Singleton<BuildManager>
     }
     void EnterBuildMode()
     {
-        GameManager.Instance.buildModePanel.SetActive(true);
         buildMode = true;
-        towerUI.SetActive(false);
+        animator.SetTrigger("OpenMenu");
     }
     public void ExitBuildMode()
     {
-        GameManager.Instance.buildModePanel.SetActive(false);
         buildMode = false;
+        animator.SetTrigger("CloseMenu");
     }
     public void SelectTower(TowerController tower)
     {
@@ -126,16 +125,6 @@ public class BuildManager : Singleton<BuildManager>
             upgradeBTN.GetComponent<Button>().interactable = false;
         }
     }
-    public void SellTower()
-    {
-        if (selectedTower != null)
-        {
-            GameManager.Instance.ShowGoldChange(selectedTower.towerSellCost);
-            GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
-            towerUI.SetActive(false);
-            Destroy(selectedTower.gameObject);
-        }
-    }
     public void UpgradeTower(ButtonENums button)
     {
         button = upgradeBTN.GetComponent<ButtonENums>();
@@ -143,20 +132,13 @@ public class BuildManager : Singleton<BuildManager>
         var newTower = _towers.FirstOrDefault(x => x.TowerType == button.towerType);
         if (newTower != null)
         {
-            if (GameManager.Instance.playerTotalGold >= newTower.TowerCost) 
+            if (GameManager.Instance.playerTotalGold >= newTower.TowerCost)
             {
-                Destroy(selectedTower.gameObject);
-                GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
-                towerUI.SetActive(false);
-                GameManager.Instance.playerTotalGold -= newTower.TowerCost;
-                GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+                DestroyOldTower(newTower);
 
                 LoadTowerToBuild(newTower);
-                GameObject tower = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
-                GameManager.Instance.builtTowers.Add(tower);
-                tower.GetComponent<TowerController>().towerType = tempTowerType;
-                tower.GetComponent<TowerController>().towerSellCost = tempSellCost;
-                tower.GetComponent<SphereCollider>().radius = tempTowerRadius;
+
+                CreateUpgradedTower(newTower);
             }
             else
             {
@@ -170,4 +152,32 @@ public class BuildManager : Singleton<BuildManager>
 
     }
 
+    private void CreateUpgradedTower(TowerSO newTower)
+    {
+        GameObject tower = Instantiate(newTower.TowerPrefab, selectedTower.transform.position, transform.rotation);
+        GameManager.Instance.builtTowers.Add(tower);
+
+        tower.GetComponent<SphereCollider>().radius = tempTowerRadius;
+        var towerStats = tower.GetComponent<TowerController>();
+        towerStats.towerType = tempTowerType;
+        towerStats.towerSellCost = tempSellCost;
+    }
+    public void SellTower()
+    {
+        if (selectedTower != null)
+        {
+            GameManager.Instance.ShowGoldChange(selectedTower.towerSellCost);
+            GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
+            towerUI.SetActive(false);
+            Destroy(selectedTower.gameObject);
+        }
+    }
+    private void DestroyOldTower(TowerSO newTower)
+    {
+        Destroy(selectedTower.gameObject);
+        GameManager.Instance.builtTowers.Remove(selectedTower.gameObject);
+        towerUI.SetActive(false);
+        GameManager.Instance.playerTotalGold -= newTower.TowerCost;
+        GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+    }
 }

@@ -26,6 +26,13 @@ public class TowerController : MonoBehaviour
     {
         CheckFlameParticle();
     }
+    private void Update()
+    {
+        if(_Enemies.Count == 0)
+        {
+            target = null;
+        }
+    }
 
     private void CheckFlameParticle()
     {
@@ -77,10 +84,12 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameObject go = other.gameObject;
-            _Enemies.Remove(go);
+            GameManager.Instance.RemoveEnemyFromTowers(other.gameObject);
+            //GameObject go = other.gameObject;
+            //_Enemies.Remove(go);
             if(_Enemies.Count > 0)
             {
+                target = null;
                 return;
             }
             flameEffectIsPlaying = false;
@@ -98,10 +107,6 @@ public class TowerController : MonoBehaviour
                 // *Fix targetting* //
                 target = _Enemies.FirstOrDefault().transform;
             }
-        }
-        if(_Enemies.Count == 0)
-        {
-            target = null;
         }
         if (target != null)
         {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
@@ -16,16 +17,16 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
+        Vector3 dir = target.position - transform.position;
+        float distancePerFrame = speed * Time.deltaTime;
+        transform.Translate(dir.normalized * distancePerFrame, Space.World);
+        transform.LookAt(target);
+
         if(target == null)
         {
             gameObject.SetActive(false);
             return;
         }
-
-        Vector3 dir = target.position - transform.position;
-        float distancePerFrame = speed * Time.deltaTime;
-        transform.Translate(dir.normalized * distancePerFrame, Space.World);
-        transform.LookAt(target);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -50,5 +51,4 @@ public class Bullet : MonoBehaviour
             }
         }
     }
-
 }

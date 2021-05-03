@@ -38,10 +38,18 @@ public class BuildManager : Singleton<BuildManager>
 
     void Update()
     {
-        if (buildMode && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitBuildMode();
+            if (!GameManager.Instance.isPaused && buildMode)
+            {
+                ExitBuildMode();
+            }
+            else if(!GameManager.Instance.isPaused || GameManager.Instance.isPaused)
+            {
+                GameManager.Instance.PauseAndUnPauseGame();
+            }
         }
+
     }
     public GameObject GetTurretToBuild()
     {
@@ -85,8 +93,11 @@ public class BuildManager : Singleton<BuildManager>
     }
     void EnterBuildMode()
     {
-        buildMode = true;
-        animator.SetTrigger("OpenMenu");
+        if (!GameManager.Instance.isPaused)
+        {
+            buildMode = true;
+            animator.SetTrigger("OpenMenu");
+        }
     }
     public void ExitBuildMode()
     {

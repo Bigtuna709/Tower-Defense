@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager>
     public int enemiesSpawned;
 
     public bool isSpawning;
+    public bool isPaused;
+    public bool isFastForwarding;
     
     [SerializeField] int _waveNumber;
 
@@ -27,11 +29,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Transform spawnLocation;
     [SerializeField] int _winWaveNum;
    
-    
     public Transform finishLine;
 
     private void Start()
     {
+        isPaused = false;
         playerGoldText.text = playerTotalGold.ToString();
         playerLivesText.text = playerTotalLives.ToString();
         waveNumText.text = "Current Wave: " + _waveNumber.ToString();
@@ -82,11 +84,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (playerTotalLives == 0)
         {
-            Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
+            GameOverLose();
         }
         if(enemiesSpawned == 0 && _waveNumber == _winWaveNum)
         {
-            Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
+            GameOverWin();
         }
     }
     public void ShowGoldChange(int amount)
@@ -124,5 +126,46 @@ public class GameManager : Singleton<GameManager>
                 }
             }           
         }
+    }
+
+    void GameOverLose()
+    {
+        Debug.Log("<color=blue>Game Over - TODO: Display on screen</color>");
+    }
+
+    void GameOverWin()
+    {
+        Debug.Log("<color=blue>You Win! - YODO: Display on screen</color>");
+    }
+    
+    public void PauseAndUnPauseGame()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+    }
+
+    public void Fastest()
+    {
+        Time.timeScale = 6;
+    }
+    public void Faster()
+    {
+        Time.timeScale = 4;
+    }
+    public void Fast()
+    {
+        Time.timeScale = 2;
+    }
+    public void NormalSpeed()
+    {
+        Time.timeScale = 1;
     }
 }

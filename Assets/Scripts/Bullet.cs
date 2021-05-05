@@ -22,8 +22,9 @@ public class Bullet : MonoBehaviour
         transform.Translate(dir.normalized * distancePerFrame, Space.World);
         transform.LookAt(target);
 
-        if(target == null)
+        if(!target.gameObject.activeInHierarchy)
         {
+            target = null;
             gameObject.SetActive(false);
             return;
         }

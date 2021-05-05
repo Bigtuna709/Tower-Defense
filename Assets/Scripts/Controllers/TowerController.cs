@@ -57,14 +57,12 @@ public class TowerController : MonoBehaviour
         {
             flameEffect.Play();
             flameParticleGO.SetActive(true);
-            //flameParticle.Play();
             Debug.Log("Played part");
         }
         else
         {
             flameEffect.Stop();
             flameParticleGO.SetActive(false);
-            //flameParticle.Stop();
             Debug.Log("Stopped part");
         }
     }
@@ -85,8 +83,6 @@ public class TowerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameManager.Instance.RemoveEnemyFromTowers(other.gameObject);
-            //GameObject go = other.gameObject;
-            //_Enemies.Remove(go);
             if(_Enemies.Count > 0)
             {
                 target = null;
@@ -152,10 +148,6 @@ public class TowerController : MonoBehaviour
             {            
                 if (tower.BulletPrefab != null)
                 {
-                    // var instance = (GameObject)Instantiate(tower.BulletPrefab, fireLocation.position, Quaternion.identity);
-                    // Bullet bullet = instance.GetComponent<Bullet>();
-
-                    //Transform newBullet = ObjectPoolManager.Instance.GetBullet(tower.BulletPrefab);
                     if (tower.BulletPrefab.CompareTag("Bullet"))
                     {
                         Transform newBullet = ObjectPoolManager.Instance.GetBullet().transform;
@@ -164,11 +156,6 @@ public class TowerController : MonoBehaviour
                         Bullet bullet = newBullet.gameObject.GetComponent<Bullet>();
                         bullet.LookForTarget(target);
                         bullet.bulletDamage = tower.TowerDamage;
-                        //if (bullet != null)
-                        //{
-                        //    bullet.LookForTarget(target);
-                        //    bullet.bulletDamage = tower.TowerDamage;
-                        //}
                     }
                     else
                     {

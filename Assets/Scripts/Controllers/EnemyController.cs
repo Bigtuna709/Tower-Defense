@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     {
         if(other.CompareTag("Finish"))
         {
+            //when the enemy reaches the end without dying
             Destroy(gameObject);
             GameManager.Instance.playerTotalLives--;
             GameManager.Instance.playerLivesText.text = GameManager.Instance.playerTotalLives.ToString();
@@ -29,7 +30,7 @@ public class EnemyController : MonoBehaviour
     }
  
     public void AddDamage(int damage)
-    {
+    { //adds damage to the enemy and checks if they die
         totalEnemyHealth -= damage;
         if(totalEnemyHealth <= 0)
         {

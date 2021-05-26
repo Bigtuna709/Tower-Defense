@@ -82,7 +82,8 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameManager.Instance.RemoveEnemyFromTowers(other.gameObject);
+            //GameManager.Instance.RemoveEnemyFromTowers(other.gameObject);
+            _Enemies.Remove(other.gameObject);
             if(_Enemies.Count > 0)
             {
                 target = null;

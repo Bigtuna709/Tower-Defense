@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3407390794258066373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3407390794258066378}
+  - component: {fileID: 3407390794258066379}
+  - component: {fileID: 3407390794258066372}
+  - component: {fileID: 3407390794258066377}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3407390794258066378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407390794258066373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3, y: 0, z: -3.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3407390794258066379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407390794258066373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3c06b4f0d5fe4cb47f46414eed9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistOnSceneLoad: 1
+  _enemies:
+  - {fileID: 11400000, guid: 9fdff22c1bb11564f92b047ada813bac, type: 2}
+  - {fileID: 11400000, guid: 8ae966565fc0bb14e999f90ca7d03408, type: 2}
+  - {fileID: 11400000, guid: 84ec77e48ddd41b49884181c1f9bce20, type: 2}
+  - {fileID: 11400000, guid: c91a5a0a77d77d2468d4c42ca857b55f, type: 2}
+  - {fileID: 11400000, guid: 0303606b055af874492aa730f01cf5ce, type: 2}
+  - {fileID: 11400000, guid: 67bf975cbdaa2c64e8db4fdecc8e4562, type: 2}
+  - {fileID: 11400000, guid: 6dd1a728910156246af02e95565b455b, type: 2}
+  - {fileID: 11400000, guid: aaf5b2219b599b54bb3472a3985b248a, type: 2}
+  - {fileID: 11400000, guid: a391571d823ffc545aad5a65991c9aba, type: 2}
+  - {fileID: 11400000, guid: bd1e6437de7cc8b4ca3528dc4e204750, type: 2}
+  - {fileID: 11400000, guid: 34dca6bc7a3c8164d8fc7518c87f8cd0, type: 2}
+  - {fileID: 11400000, guid: 2724bb8f0ebdf754c9b62499dd7b5f8b, type: 2}
+  - {fileID: 11400000, guid: 6bd0e3182b088df489c851e3b8b5e1f0, type: 2}
+  - {fileID: 11400000, guid: 72689e29268d22f428309ab101dbac21, type: 2}
+  builtTowers: []
+  playerTotalGold: 1000
+  playerTotalLives: 20
+  isPaused: 0
+  _waveNumber: 1
+  startWaveBTN: {fileID: 0}
+  playerHUD: {fileID: 0}
+  buildModePanel: {fileID: 0}
+  playerLivesText: {fileID: 0}
+  playerGoldText: {fileID: 0}
+  waveNumText: {fileID: 0}
+  spawnLocation: {fileID: 0}
+  _winWaveNum: 12
+  finishLine: {fileID: 0}
+--- !u!114 &3407390794258066372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407390794258066373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a44e7ecbcd01b4a9fc83e0e739dba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistOnSceneLoad: 1
+  _towers:
+  - {fileID: 11400000, guid: df2340ea9fe111946aa32b26bd8bb2ca, type: 2}
+  - {fileID: 11400000, guid: b966acea87112044ba7f245d00db7e5f, type: 2}
+  - {fileID: 11400000, guid: d8d24bf90825b264ca15b9e5493f7c5a, type: 2}
+  - {fileID: 11400000, guid: f87462f9ac1fab949a2adf6d7e2e1988, type: 2}
+  - {fileID: 11400000, guid: f62cf39b83aac1a498c010203037fbd0, type: 2}
+  - {fileID: 11400000, guid: 5f92bee22f8a01440be45c04d9c644a1, type: 2}
+  - {fileID: 11400000, guid: 4f68ad4aa5679354dbd569187949ebeb, type: 2}
+  - {fileID: 11400000, guid: 0fcb29e961ab5794e8778a267c8ef910, type: 2}
+  - {fileID: 11400000, guid: fc9ae3dcad6ecc54f928ea8c06d4eede, type: 2}
+  towerNameText: {fileID: 0}
+  towerCostText: {fileID: 0}
+  towerRadiusText: {fileID: 0}
+  towerDamageText: {fileID: 0}
+  towerImage: {fileID: 0}
+  towerUI: {fileID: 0}
+  towerSellText: {fileID: 0}
+  towerUpgradeNameText: {fileID: 0}
+  towerUpgradeDamageText: {fileID: 0}
+  towerUpgradeFireRadiusText: {fileID: 0}
+  towerUpgradeCostText: {fileID: 0}
+  upgradeBTN: {fileID: 0}
+  tempSellCost: 0
+  tempTowerRadius: 0
+  buildMode: 0
+  towerCost: 0
+  tempTowerType: 0
+  animator: {fileID: 0}
+--- !u!114 &3407390794258066377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407390794258066373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7d98cd372e4d741ab7f849260946e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistOnSceneLoad: 1
+  bulletPrefab: {fileID: 6576140414381998105, guid: cfeb9894d264e764b8a72be8948754cb,
+    type: 3}
+  rocketPrefab: {fileID: 8519911300366328304, guid: d50e59e091456c644bb752b0c771ed9c,
+    type: 3}

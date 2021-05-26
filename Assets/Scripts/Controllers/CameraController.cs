@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         Vector3 pos = transform.position;
-
+        //controls the camera with WASD controls
         if(Input.GetKey(KeyCode.W))
         {
             pos.z += panSpeed * Time.deltaTime;

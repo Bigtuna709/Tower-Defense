@@ -27,13 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2662731384290212909}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.012999892, y: 0.074, z: -0.022000015}
-  m_LocalScale: {x: 0.300825, y: 0.300825, z: 0.300825}
+  m_LocalPosition: {x: 0.01501, y: 0.089, z: -0.047421}
+  m_LocalScale: {x: 0.36198273, y: 0.36198273, z: 0.36198273}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5952256807596154933}
+  m_Children: []
   m_Father: {fileID: 8368881803181522975}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &8288348943371386026
 MeshFilter:
@@ -8499,7 +8498,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3484
+  m_VersionIndex: 3505
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14681,7 +14680,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8686
+  m_VersionIndex: 8707
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14790,12 +14789,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8502176553377617391}
-  m_LocalRotation: {x: 0.08375259, y: 0.7021293, z: -0.0837526, w: 0.7021293}
-  m_LocalPosition: {x: 4.913, y: 3.29, z: -0}
-  m_LocalScale: {x: 10.8726425, y: 6.57454, z: 8.292465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.015009701, y: 1.2799232, z: 1.7310004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4754194153358686012}
+  m_Father: {fileID: 8368881803181522975}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8527274719209689492
@@ -14826,6 +14825,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5952256807596154933}
   - {fileID: 4754194153358686012}
   m_Father: {fileID: 6151688367910978697}
   m_RootOrder: 0

@@ -62,7 +62,7 @@ public class TowerController : MonoBehaviour
         else
         {
             flameEffect.Stop();
-            flameParticleGO.SetActive(false);
+            //flameParticleGO.SetActive(false);
             Debug.Log("Stopped part");
         }
     }

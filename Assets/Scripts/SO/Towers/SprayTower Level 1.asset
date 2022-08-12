@@ -17,7 +17,7 @@ MonoBehaviour:
   _towerShootRadius: 3
   _towerCost: 25
   _towerSellAmount: 12
-  _towerDamage: 1
+  _towerDamage: 2
   _towerAreaDamage: 0
   _towerRateOfFire: 0
   _towerAreaDamageRadius: 0

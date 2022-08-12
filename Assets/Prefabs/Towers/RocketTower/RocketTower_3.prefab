@@ -29001,6 +29001,7 @@ GameObject:
   - component: {fileID: 3463483834375107324}
   - component: {fileID: 4064568425035119997}
   - component: {fileID: 2700975002030892981}
+  - component: {fileID: 2233144972407276443}
   - component: {fileID: 5631994878952539757}
   - component: {fileID: 4871297665507621859}
   m_Layer: 0
@@ -29052,16 +29053,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Enemies: []
-  target: {fileID: 0}
-  fireLocation: {fileID: 5952256807596154933}
   turnSpeed: 10
   partToRotate: {fileID: 1863624494747773868}
   towerType: 5
-  flameEffect: {fileID: 0}
-  flameEffectIsPlaying: 0
-  flameParticleGO: {fileID: 0}
-  flameParticle: {fileID: 0}
   towerSellCost: 7
+--- !u!114 &2233144972407276443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228429763521997480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb80a4781eb035f4580e749477d43520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerFireTime: 0.75
+  towerType: 5
+  fireLocation: {fileID: 5952256807596154933}
+  target: {fileID: 0}
 --- !u!136 &5631994878952539757
 CapsuleCollider:
   m_ObjectHideFlags: 0

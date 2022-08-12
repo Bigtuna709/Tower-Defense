@@ -43327,6 +43327,7 @@ GameObject:
   - component: {fileID: 5179952581958857183}
   - component: {fileID: 8518990288411054691}
   - component: {fileID: 5890198334891463436}
+  - component: {fileID: 5995509760314478421}
   m_Layer: 0
   m_Name: SprayTower_2
   m_TagString: Untagged
@@ -43381,10 +43382,6 @@ MonoBehaviour:
   turnSpeed: 10
   partToRotate: {fileID: 6092064788345895434}
   towerType: 7
-  flameEffect: {fileID: 7814489394518751242}
-  flameEffectIsPlaying: 0
-  flameParticleGO: {fileID: 5558278704041347416}
-  flameParticle: {fileID: 0}
   towerSellCost: 12
 --- !u!136 &8518990288411054691
 CapsuleCollider:
@@ -43413,6 +43410,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.499312, y: 0.5360215, z: 1.5166919}
   m_Center: {x: -0.004671216, y: 0.26801074, z: 0.013359904}
+--- !u!114 &5995509760314478421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196823191359567429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fdc32d4abb2cb4595f1365c3f0804f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flameParticleGO: {fileID: 5558278704041347416}
+  flameParticle: {fileID: 7819064724554087500}
+  flameEffect: {fileID: 7814489394518751242}
+  flameEffectIsPlaying: 0
+  towerType: 7
 --- !u!1 &8476278253324592867
 GameObject:
   m_ObjectHideFlags: 0
@@ -45950,6 +45964,12 @@ GameObject:
 --- !u!4 &5777903151856541666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3134807281109703182, guid: 251fc6b1a80cd8343add287f22274dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8912112188548629996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7819064724554087500 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1669932907563301280, guid: 251fc6b1a80cd8343add287f22274dc4,
     type: 3}
   m_PrefabInstance: {fileID: 8912112188548629996}
   m_PrefabAsset: {fileID: 0}

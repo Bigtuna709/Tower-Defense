@@ -137,8 +137,8 @@ public class GameManager : Singleton<GameManager>
                     if (towerController._Enemies.Count == 0)
                     {
                         //for flame towers
-                        towerController.flameEffectIsPlaying = false;
-                        towerController.FlameController();
+                        towerController.flameComponent.flameEffectIsPlaying = false;
+                        towerController.flameComponent.FlameController();
                     }
                 }
                 else

@@ -29121,9 +29121,10 @@ GameObject:
   - component: {fileID: 1600423764819942139}
   - component: {fileID: 5179952581958857184}
   - component: {fileID: 5179952581958857183}
+  - component: {fileID: 6980273176715333}
+  - component: {fileID: 7251928983409005380}
   - component: {fileID: 8518990288411054691}
   - component: {fileID: 5890198334891463436}
-  - component: {fileID: 6980273176715333}
   m_Layer: 0
   m_Name: SprayTower_1
   m_TagString: Untagged
@@ -29144,6 +29145,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1609021576552648222}
+  - {fileID: 1965695037231755133}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29173,12 +29175,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Enemies: []
-  target: {fileID: 0}
-  fireLocation: {fileID: 6718713653577806569}
   turnSpeed: 10
   partToRotate: {fileID: 5213941909068252072}
   towerType: 6
+  target: {fileID: 0}
+  flameComponent: {fileID: 0}
+  towerFireRadiusIMG: {fileID: 1914590941240574118}
   towerSellCost: 12
+--- !u!114 &6980273176715333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196823191359567429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fdc32d4abb2cb4595f1365c3f0804f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flameParticleGO: {fileID: 5558278704041347416}
+  flameParticle: {fileID: 7819064724554087500}
+  flameEffect: {fileID: 7814489394518751242}
+  flameEffectIsPlaying: 0
+  towerType: 6
+--- !u!114 &7251928983409005380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196823191359567429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f37196bdaaa06b43a068d15b6963a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &8518990288411054691
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29206,23 +29238,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.499312, y: 0.5360215, z: 1.5166919}
   m_Center: {x: -0.004671216, y: 0.26801074, z: 0.013359904}
---- !u!114 &6980273176715333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196823191359567429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fdc32d4abb2cb4595f1365c3f0804f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flameParticleGO: {fileID: 5558278704041347416}
-  flameParticle: {fileID: 7819064724554087500}
-  flameEffect: {fileID: 7814489394518751242}
-  flameEffectIsPlaying: 0
-  towerType: 6
 --- !u!1 &8912591028703002372
 GameObject:
   m_ObjectHideFlags: 0
@@ -30796,6 +30811,102 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &2573715204713424581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1600423764819942139}
+    m_Modifications:
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118069097670141539, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Tower Radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118069097670141539, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86ca52833085ad74480e4e5f32a3cd5b, type: 3}
+--- !u!1 &1914590941240574118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4118069097670141539, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2573715204713424581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1965695037231755133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4102816021411613112, guid: 86ca52833085ad74480e4e5f32a3cd5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2573715204713424581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6819188923403295857
 PrefabInstance:
   m_ObjectHideFlags: 0

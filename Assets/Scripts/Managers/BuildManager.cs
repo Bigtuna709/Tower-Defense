@@ -28,7 +28,7 @@ public class BuildManager : Singleton<BuildManager>
     public int tempTowerRadius;
 
     GameObject _turretToBuild;
-    TowerController selectedTower;
+    public TowerController selectedTower;
 
     public bool buildMode;
 
@@ -109,11 +109,21 @@ public class BuildManager : Singleton<BuildManager>
         var instance = _towers.FirstOrDefault(x => x.TowerType == tower.towerType);
         if (instance != null)
         {
-            selectedTower = tower;
-            _turretToBuild = null;
-            towerUI.transform.position = tower.transform.position;
-            SelectedTowerUI(instance);
-            towerUI.SetActive(true);
+            if (selectedTower == null)
+            {
+                selectedTower = tower;
+                _turretToBuild = null;
+                towerUI.transform.position = tower.transform.position;
+                SelectedTowerUI(instance);
+                towerUI.SetActive(true);
+                tower.towerFireRadiusIMG.SetActive(true);
+            }
+            else
+            {
+                selectedTower.towerFireRadiusIMG.SetActive(false);
+                towerUI.SetActive(false);
+                selectedTower = null;
+            }
         }
     }
     public void SelectedTowerUI(TowerSO tower)

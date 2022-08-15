@@ -1,4 +1,5 @@
+using UnityEngine;
 public interface IFireable
 {
-    public void FireWeapon();
+    public void FireWeapon(Transform target);
 }

@@ -10,7 +10,7 @@ public class FlameComponent : MonoBehaviour, IFireable
     [SerializeField] public bool flameEffectIsPlaying = false;
     [SerializeField] private TowerType towerType;
 
-    public void FireWeapon()
+    public void FireWeapon(Transform target)
     {
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
         if (tower != null)
@@ -31,21 +31,8 @@ public class FlameComponent : MonoBehaviour, IFireable
         else
             return;
     }
-
-    //public void CheckFlameParticle()
-    //{
-    //    if (flameParticleGO != null)
-    //    {
-    //        flameParticleGO.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
     public void FlameController()
     {
-        //CheckFlameParticle();
         if (flameEffect == null)
             return;
         
@@ -58,7 +45,6 @@ public class FlameComponent : MonoBehaviour, IFireable
         else
         {
             flameEffect.Stop();
-            //flameParticleGO.SetActive(false);
             Debug.Log("Stopped part");
         }
     }

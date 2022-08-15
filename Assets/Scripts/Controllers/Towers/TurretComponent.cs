@@ -6,10 +6,9 @@ public class TurretComponent : MonoBehaviour, IFireable
     [SerializeField] private float towerFireTime;
     [SerializeField] private TowerType towerType;
     [SerializeField] private Transform fireLocation;
-    public Transform target;
 
     bool ReadyToFire() => Time.time >= towerFireTime;
-    public void FireWeapon()
+    public void FireWeapon(Transform target)
     {
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
         if (tower != null)

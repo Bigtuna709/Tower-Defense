@@ -30,7 +30,9 @@ public class Node : MonoBehaviour
 
         if (!BuildManager.Instance.buildMode)
         {
-            BuildManager.Instance.towerUI.SetActive(false);
+            //move to own function
+            //BuildManager.Instance.towerUI.SetActive(false);
+            BuildManager.Instance.SelectTower(BuildManager.Instance.selectedTower);
             return;
         }
         RemoveGhostTower();
@@ -42,8 +44,11 @@ public class Node : MonoBehaviour
         GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
         turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
         GameManager.Instance.builtTowers.Add(turret);
-        turretToBuild.GetComponent<TowerController>().towerType = BuildManager.Instance.tempTowerType;
-        turretToBuild.GetComponent<TowerController>().towerSellCost = BuildManager.Instance.tempSellCost;
+
+        var newTurret = turretToBuild.GetComponent<TowerController>();
+        newTurret.towerFireRadiusIMG.SetActive(false);
+        newTurret.towerType = BuildManager.Instance.tempTowerType;
+        newTurret.towerSellCost = BuildManager.Instance.tempSellCost;
         turretToBuild.GetComponent<SphereCollider>().radius = BuildManager.Instance.tempTowerRadius;
 
         GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
@@ -85,6 +90,7 @@ public class Node : MonoBehaviour
             {
                 GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
                 ghostTurret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
+                ghostTurret.GetComponent<TowerController>().towerFireRadiusIMG.SetActive(true);
                 Destroy(ghostTurret.GetComponent<TowerController>());
                 ghostTurret.GetComponent<CapsuleCollider>().isTrigger = true;
                 ghostTurret.GetComponent<BoxCollider>().isTrigger = true;

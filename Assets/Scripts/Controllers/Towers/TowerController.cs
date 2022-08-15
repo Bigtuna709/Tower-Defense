@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.EventSystems;
 
 public class TowerController : MonoBehaviour
 {
@@ -9,9 +8,11 @@ public class TowerController : MonoBehaviour
     public float turnSpeed = 10;
     public Transform partToRotate;
     public TowerType towerType;
+    public Transform target;
 
     public FlameComponent flameComponent;
     private TurretComponent turretComponent;
+    public GameObject towerFireRadiusIMG; 
 
     [HideInInspector]
     public int towerSellCost;
@@ -21,15 +22,11 @@ public class TowerController : MonoBehaviour
         flameComponent = GetComponent<FlameComponent>();
         turretComponent = GetComponent<TurretComponent>();
     }
-    //private void OnEnable()
-    //{
-    //    flameComponent.CheckFlameParticle();
-    //}
     private void Update()
     {
         if(_Enemies.Count == 0)
         {
-            turretComponent.target = null;
+            target = null;
         }
     }
 
@@ -42,7 +39,7 @@ public class TowerController : MonoBehaviour
             {
                 _Enemies.Add(go);
                 if (flameComponent != null)
-                    flameComponent.FireWeapon();
+                    flameComponent.FireWeapon(target);
             }
         }
     }
@@ -53,11 +50,14 @@ public class TowerController : MonoBehaviour
             _Enemies.Remove(other.gameObject);
             if(_Enemies.Count > 0)
             {
-                turretComponent.target = null;
+                target = null;
                 return;
             }
-            flameComponent.flameEffectIsPlaying = false;
-            flameComponent.FlameController();
+            if (flameComponent != null)
+            {
+                flameComponent.flameEffectIsPlaying = false;
+                flameComponent.FlameController();
+            }
             
         }
     }
@@ -69,31 +69,18 @@ public class TowerController : MonoBehaviour
             if (_Enemies.Count > 0)
             {
                 // *Fix targetting* //
-                turretComponent.target = _Enemies.FirstOrDefault().transform;
+                target = _Enemies.FirstOrDefault().transform;
             }
         }
-        if (turretComponent.target != null)
+        if (target != null)
         {
-            Vector3 dir = turretComponent.target.position - transform.position;
+            Vector3 dir = target.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-            turretComponent.FireWeapon();
-        }
-    }
-
-    void OnMouseDown()
-    {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-
-        if (!BuildManager.Instance.buildMode)
-        {
-            BuildManager.Instance.SelectTower(this);
-            return;
+            if(turretComponent != null)
+            turretComponent.FireWeapon(target);
         }
     }
 }

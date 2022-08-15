@@ -47,6 +47,7 @@ public class BuildManager : Singleton<BuildManager>
             else if(!GameManager.Instance.isPaused || GameManager.Instance.isPaused)
             {
                 GameManager.Instance.PauseAndUnPauseGame();
+                GameManager.Instance.pauseCanvas.SetActive(true);
             }
         }
 

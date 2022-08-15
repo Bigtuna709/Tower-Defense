@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.VFX;
+using TMPro;
 public class GameManager : Singleton<GameManager>
 {
     public List<EnemySO> _enemies = new List<EnemySO>();
@@ -25,10 +26,11 @@ public class GameManager : Singleton<GameManager>
     public GameObject playerHUD;
     public GameObject winCanvas;
     public GameObject loseCanvas;
+    public GameObject pauseCanvas;
     public GameObject buildModePanel;
     public Text playerLivesText;
     public Text playerGoldText;
-    public Text waveNumText;
+    public TextMeshProUGUI waveNumText;
 
     public VisualEffect fireworks;
 
@@ -173,7 +175,7 @@ public class GameManager : Singleton<GameManager>
         UpdateUI();
     }
 
-    private void CheckTimeScale()
+    public void CheckTimeScale()
     {
         if (isFastForwarding)
         {

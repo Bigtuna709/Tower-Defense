@@ -57,7 +57,7 @@ public class BuildManager : Singleton<BuildManager>
     }
     public void BuildTower(ButtonENums button)
     {
-        if (!buildMode)
+        if (!buildMode && selectedTower == null)
         {
             var tower = _towers.FirstOrDefault(x => x.TowerType == button.towerType);
             if (tower != null)

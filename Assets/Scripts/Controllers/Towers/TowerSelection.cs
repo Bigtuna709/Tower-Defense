@@ -4,10 +4,7 @@ using UnityEngine.EventSystems;
 public class TowerSelection : MonoBehaviour
 {
     private TowerController towerController;
-    private void Awake()
-    {
-        towerController = GetComponent<TowerController>();
-    }
+    private void Awake() => towerController = GetComponent<TowerController>();
     void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())

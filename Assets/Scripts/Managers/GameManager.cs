@@ -41,10 +41,7 @@ public class GameManager : Singleton<GameManager>
 
     float previousTimeScale;
 
-    private void Start()
-    {
-        UpdateUI();
-    }
+    //private void Start() => UpdateUI();
 
     void UpdateUI()
     {

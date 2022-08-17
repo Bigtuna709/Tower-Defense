@@ -13,37 +13,34 @@ public class TurretComponent : MonoBehaviour, IFireable
         var tower = BuildManager.Instance._towers.FirstOrDefault(x => x.TowerType == towerType);
         if (tower != null)
         {
-            if (ReadyToFire())
+            if (ReadyToFire() && tower.BulletPrefab != null)
             {
-                if (tower.BulletPrefab != null)
+                if (tower.BulletPrefab.CompareTag("Bullet"))
                 {
-                    if (tower.BulletPrefab.CompareTag("Bullet"))
-                    {
-                        Transform newBullet = ObjectPoolManager.Instance.GetBullet().transform;
-                        newBullet.transform.position = fireLocation.transform.position;
-                        newBullet.gameObject.SetActive(true);
-                        Bullet bullet = newBullet.gameObject.GetComponent<Bullet>();
-                        bullet.LookForTarget(target);
-                        bullet.bulletDamage = tower.TowerDamage;
-                    }
-                    else
-                    {
-                        Transform newRocket = ObjectPoolManager.Instance.GetRocket().transform;
-                        newRocket.transform.position = fireLocation.transform.position;
-                        newRocket.gameObject.SetActive(true);
-                        Bullet rocket = newRocket.gameObject.GetComponent<Bullet>();
-                        rocket.LookForTarget(target);
-                        rocket.bulletDamage = tower.TowerDamage;
-                        rocket.rocketAreaDamage = tower.TowerAreaDamage;
-                        rocket.rocketDamageArea = tower.TowerAreaDamageRadius;
-                    }
+                    Transform newBullet = ObjectPoolManager.Instance.GetBullet().transform;
+                    newBullet.transform.position = fireLocation.transform.position;
+                    newBullet.gameObject.SetActive(true);
+                    Bullet bullet = newBullet.gameObject.GetComponent<Bullet>();
+                    bullet.LookForTarget(target);
+                    bullet.bulletDamage = tower.TowerDamage;
                 }
                 else
                 {
-                    return;
+                    Transform newRocket = ObjectPoolManager.Instance.GetRocket().transform;
+                    newRocket.transform.position = fireLocation.transform.position;
+                    newRocket.gameObject.SetActive(true);
+                    Bullet rocket = newRocket.gameObject.GetComponent<Bullet>();
+                    rocket.LookForTarget(target);
+                    rocket.bulletDamage = tower.TowerDamage;
+                    rocket.rocketAreaDamage = tower.TowerAreaDamage;
+                    rocket.rocketDamageArea = tower.TowerAreaDamageRadius;
                 }
-                towerFireTime = Time.time + tower.TowerRateOfFire;
             }
+            else
+            {
+                return;
+            }
+            towerFireTime = Time.time + tower.TowerRateOfFire;
         }
     }    
 }

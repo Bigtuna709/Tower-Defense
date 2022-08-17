@@ -50,12 +50,8 @@ public class BuildManager : Singleton<BuildManager>
                 GameManager.Instance.pauseCanvas.SetActive(true);
             }
         }
-
     }
-    public GameObject GetTurretToBuild()
-    {
-            return _turretToBuild;   
-    }
+    public GameObject GetTurretToBuild() => _turretToBuild;
     public void BuildTower(ButtonENums button)
     {
         if (!buildMode && selectedTower == null)
@@ -121,12 +117,18 @@ public class BuildManager : Singleton<BuildManager>
             }
             else
             {
-                selectedTower.towerFireRadiusIMG.SetActive(false);
-                towerUI.SetActive(false);
-                selectedTower = null;
+                TurnOffTowerUI();
             }
         }
     }
+
+    public void TurnOffTowerUI()
+    {
+        selectedTower.towerFireRadiusIMG.SetActive(false);
+        towerUI.SetActive(false);
+        selectedTower = null;
+    }
+
     public void SelectedTowerUI(TowerSO tower)
     {
         upgradeBTN.GetComponent<Button>().interactable = true;

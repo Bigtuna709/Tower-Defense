@@ -21,6 +21,7 @@ public class Node : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
+            RemoveGhostTower();
             return;
         }
         if (CantBuild())
@@ -31,40 +32,44 @@ public class Node : MonoBehaviour
         if (!BuildManager.Instance.buildMode)
         {
             //move to own function
-            //BuildManager.Instance.towerUI.SetActive(false);
-            BuildManager.Instance.SelectTower(BuildManager.Instance.selectedTower);
-            return;
+            if (BuildManager.Instance.selectedTower != null)
+            {
+                BuildManager.Instance.TurnOffTowerUI();
+            }
+            else
+                return; 
         }
+
         RemoveGhostTower();
         BuildTowerOnNode();
     }
 
     void BuildTowerOnNode()
     {
-        GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
-        GameManager.Instance.builtTowers.Add(turret);
-
-        var newTurret = turretToBuild.GetComponent<TowerController>();
-        newTurret.towerFireRadiusIMG.SetActive(false);
-        newTurret.towerType = BuildManager.Instance.tempTowerType;
-        newTurret.towerSellCost = BuildManager.Instance.tempSellCost;
-        turretToBuild.GetComponent<SphereCollider>().radius = BuildManager.Instance.tempTowerRadius;
-
-        GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
-        GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
-
-        if (GameManager.Instance.playerTotalGold < BuildManager.Instance.towerCost)
+        if (BuildManager.Instance.buildMode)
         {
-            BuildManager.Instance.ExitBuildMode();
-            Debug.Log("<color=red>Not enough gold! - TODO: Display on screen</color>");
+            GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
+            turret = (GameObject)Instantiate(turretToBuild, transform.position + _towerOffSet, transform.rotation);
+            GameManager.Instance.builtTowers.Add(turret);
+
+            var newTurret = turretToBuild.GetComponent<TowerController>();
+            newTurret.towerFireRadiusIMG.SetActive(false);
+            newTurret.towerType = BuildManager.Instance.tempTowerType;
+            newTurret.towerSellCost = BuildManager.Instance.tempSellCost;
+            turretToBuild.GetComponent<SphereCollider>().radius = BuildManager.Instance.tempTowerRadius;
+
+            GameManager.Instance.playerTotalGold -= BuildManager.Instance.towerCost;
+            GameManager.Instance.playerGoldText.text = GameManager.Instance.playerTotalGold.ToString();
+
+            if (GameManager.Instance.playerTotalGold < BuildManager.Instance.towerCost)
+            {
+                BuildManager.Instance.ExitBuildMode();
+                Debug.Log("<color=red>Not enough gold! - TODO: Display on screen</color>");
+            }
         }
     }
 
-    private bool CantBuild()
-    {
-        return turret != null;
-    }
+    private bool CantBuild() => turret != null;
 
     void OnMouseOver()
     {
@@ -112,7 +117,10 @@ public class Node : MonoBehaviour
 
     private void RemoveGhostTower()
     {
-        rend.material.color = startColor;
-        Destroy(ghostTurret);
+        if(BuildManager.Instance.buildMode)
+        {
+            rend.material.color = startColor;
+            Destroy(ghostTurret);
+        }
     }
 }

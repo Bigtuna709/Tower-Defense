@@ -6,10 +6,7 @@ public class EnemyController : MonoBehaviour
 
     public int totalEnemyHealth;
     public int enemyReward;
-    void Awake()
-    {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-    }
+    void Awake() => _navMeshAgent = GetComponent<NavMeshAgent>();
     void OnEnable()
     {
         Vector3 finishLine = GameObject.Find("FinishLine").transform.position;

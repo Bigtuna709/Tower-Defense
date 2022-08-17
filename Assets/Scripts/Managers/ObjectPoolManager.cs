@@ -7,56 +7,42 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     public GameObject bulletPrefab;
     public GameObject rocketPrefab;
 
-    int bulletSpawnAmount = 10;
-    int rocketSpawnAmount = 10;
+    int amountOfAmmoToSpawn = 10;
 
     List<GameObject> allBulletsCreated = new List<GameObject>();
     List<GameObject> allRocketsCreated = new List<GameObject>();
 
     public List<GameObject> AllBulletsCreated { get { return allBulletsCreated; } }
     public List<GameObject> AllRocketsCreated { get { return allRocketsCreated; } }
-    public int BulletSpawnAmount { get { return bulletSpawnAmount; } }
-    public int RocketSpawnAmount { get { return rocketSpawnAmount; } }
+    public int AmountOfAmmoToSpawn { get { return amountOfAmmoToSpawn; } }
     private void Start()
     {
-        for(int i = 0; i < bulletSpawnAmount; i++)
+        for(int i = 0; i < amountOfAmmoToSpawn; i++)
         {
-            CreateBullet();
-        }
-        for(int i = 0; i < rocketSpawnAmount; i++)
-        {
-            CreateRocket();
+            CreateAmmo(bulletPrefab, allBulletsCreated);
+            CreateAmmo(rocketPrefab, allRocketsCreated);
         }
     }
 
-    public GameObject CreateBullet()
+    private GameObject CreateAmmo(GameObject objectPrefab, List<GameObject> objectList)
     {
-        GameObject go = Instantiate(bulletPrefab);
+        GameObject go = Instantiate(objectPrefab);
         go.SetActive(false);
-        AllBulletsCreated.Add(go);
+        objectList.Add(go);
         return go;
     }
-    public GameObject CreateRocket()
-    {
-        GameObject go = Instantiate(rocketPrefab);
-        go.SetActive(false);
-        AllRocketsCreated.Add(go);
-        return go;
-    }
-
     public GameObject GetBullet()
     {
+        for (int i = 0; i < AllBulletsCreated.Count; i++)
         {
-            for (int i = 0; i < AllBulletsCreated.Count; i++)
+            if (!AllBulletsCreated[i].activeInHierarchy)
             {
-                if (!AllBulletsCreated[i].activeInHierarchy)
-                {
-                    return AllBulletsCreated[i];
-                }
+                return AllBulletsCreated[i];
             }
         }
-            return CreateBullet();
+        return CreateAmmo(bulletPrefab, allBulletsCreated);
     }
+    
     public GameObject GetRocket()
     {
         for(int i = 0; i < AllRocketsCreated.Count; i++)
@@ -66,6 +52,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
                 return AllRocketsCreated[i];
             }
         }
-        return CreateRocket();
+        return CreateAmmo(rocketPrefab, allRocketsCreated);
     }
 }
